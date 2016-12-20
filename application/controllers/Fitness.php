@@ -15,7 +15,7 @@ class Fitness extends CI_Controller{
 	{
 		$this->load->view('templates/header');
 		$this->load->view('fitness/get_oid');
-		$this->load->view('fitness/menu');
+		$this->load->view('fitness/footer');
 	}
 	
 	public function get_details_oid($oid=null)
@@ -43,7 +43,7 @@ class Fitness extends CI_Controller{
 		//print_r($data['mdata']);
 		$this->load->view('templates/header');
 		$this->load->view('fitness/record',$data);
-		$this->load->view('fitness/menu');
+		//$this->load->view('fitness/footer');
 		endif;
 		//echo $fitness->num_row;
 	}
