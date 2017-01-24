@@ -5,6 +5,7 @@ class Fitness extends CI_Controller{
 		parent::__construct();
 		$this->load->model('patients_model');
 		$this->load->model('fitness_model');
+		$this->load->model('surgery_model');
 		$this->load->helper('url_helper');
 		$this->load->helper('form');
 		$this->load->library('form_validation');
@@ -25,7 +26,15 @@ class Fitness extends CI_Controller{
 		$this->get_oid();
 		else:
 		$oid=$this->input->post('oid');
+		//check if already added to surgery table and accordigly steer.
+			if ($this->surgery_model->get_details($oid)):
+				die ("Patient already added to surgery table. Cannot add/edit<br><a href=get_oid>Continue</a>");
+			endif;
 		$row=$this->patients_model->get_pid($oid);
+			if (!$row):
+				die ("Pl check OID. <br><a href=get_oid>Continue</a>");
+			endif;
+		
 		//echo $oid."<br>";
 		//echo $row->pid."<br>";
 		$pid=$row->pid;
