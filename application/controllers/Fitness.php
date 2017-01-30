@@ -30,50 +30,82 @@ class Fitness extends CI_Controller{
 			if ($this->surgery_model->get_details($oid)):
 				die ("Patient already added to surgery table. Cannot add/edit<br><a href=get_oid>Continue</a>");
 			endif;
-		$row=$this->patients_model->get_pid($oid);
-			if (!$row):
+		//check if oid exists
+			if (!$data['patients']=$this->patients_model->get_details_oid($oid)):
 				die ("Pl check OID. <br><a href=get_oid>Continue</a>");
 			endif;
-		
-		//echo $oid."<br>";
-		//echo $row->pid."<br>";
-		$pid=$row->pid;
-		$data['patients']=$this->patients_model->get_details_opd($pid);
-		//print_r($data['patients']);
+				
+		$data['mdata']=$this->fitness_model->get_mdata();
 		$data['fitness']=$this->fitness_model->get_details_oid($oid);
 			if (!empty($data['fitness'])):
-			//print_r($data['fitness']);
 			$data['todo']="Update";
+			$data['fitness']['date']=date('d-m-Y',strtotime($data['fitness']['date']));
 			else:
 			$data['todo']="Add";
+			foreach ($data['mdata'] as $mdata1):
+				if($mdata1->name=='date'):
+				$data['fitness'][$mdata1->name]=Date("d-m-Y");
+				continue;
+				endif;
+				
+			$data['fitness'][$mdata1->name]='';
+			endforeach;
+
 			endif;
-			//echo $todo;
-		$data['mdata']=$this->fitness_model->get_mdata();
-		//print_r($data['mdata']);
 		$this->load->view('templates/header');
 		$this->load->view('fitness/record',$data);
-		//$this->load->view('fitness/footer');
 		endif;
-		//echo $fitness->num_row;
 	}
 
 	public function add_update()
 	{
-		$post=$this->input->post();
-		$todo=$post['todo'];
 		$mdata=$this->fitness_model->get_mdata();
+		foreach ($mdata as $mdata1):	
+			if ('remark'!==$mdata1->name):
+			$this->form_validation->set_rules($mdata1->name, ucfirst($mdata1->name), 'required');
+			endif;
+		endforeach;
+		if ($this->form_validation->run()==false):
+			$oid=$this->input->post('oid');
+			$data['todo']=$_POST['todo'];
+			
+			$data['patients']=$this->patients_model->get_details_oid($oid);
+
+			if (isset($data['fitness'])):
+				unset($data['fitness']);
+			endif;
+			
+			$data['mdata']=$this->fitness_model->get_mdata();
+		
 			foreach ($mdata as $mdata1):
-				$data[$mdata1->name]=$post[$mdata1->name];
+			$data['fitness'][$mdata1->name]=$_POST[$mdata1->name];
 			endforeach;
+		
+		
+			$this->load->view('templates/header');
+			$this->load->view('fitness/record',$data);
+		
+
+
+		else:
+			$post=$this->input->post();
+			$todo=$post['todo'];
+			
+			foreach ($mdata as $mdata1):
+				if ($mdata1->name=='date'):
+					$post[$mdata1->name]=date('Y-m-d',strtotime($post[$mdata1->name]));
+				endif;
+				$data[$mdata1->name]=$post[$mdata1->name];
+				endforeach;
 			if ("Add"==$todo):
 				$this->fitness_model->add($data);
 				echo "record added";
 			else:
 				$this->fitness_model->update($data);
-				echo "record updated";
+				echo "record updated ";
 			endif;
 			echo "<a href=get_oid>Continue</a>";
-			
+		endif;	
 		
 	}
 }

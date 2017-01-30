@@ -35,15 +35,19 @@ class Patients_model extends CI_Model{
 		return $query->result_array();
 	}
 	
-	/*public function get_details_oid($oid)
+	public function get_details_oid($oid)
 	{
 		$query=$this->db->select('patients.*, opd.oid');
 		$query=$this->db->from('patients');
 		$query=$this->db->join('opd', 'patients.pid=opd.pid', 'inner');
 		$query=$this->db->where('opd.oid',$oid);
 		$query=$this->db->get();
-		return $query->result_array();
-	}*/
+		if ($query->num_rows()>0):
+		return $query->row_array();
+		else:
+		return false;
+		endif;
+	}
 	public function get_pid($oid)
 	{
 		$query=$this->db->select('pid');
