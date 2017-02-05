@@ -28,6 +28,8 @@ class Fitness extends CI_Controller{
 		$oid=$this->input->post('oid');
 		//check if already added to surgery table and accordigly steer.
 			if ($this->surgery_model->get_details($oid)):
+				$display=$this->fitness_model->get_details_oid($oid);
+				echo '<pre>'; print_r($display); echo '</pre>';
 				die ("Patient already added to surgery table. Cannot add/edit<br><a href=get_oid>Continue</a>");
 			endif;
 		//check if oid exists
