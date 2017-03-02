@@ -110,6 +110,36 @@ class Fitness extends CI_Controller{
 		endif;	
 		
 	}
+	
+	public function get_date()
+	{
+		$this->load->view('templates/header');
+		$this->load->view('fitness/get_date');
+		$this->load->view('fitness/footer');
+	}
+		
+	public function get_details_date($date=null)
+	{
+		$this->form_validation->set_rules('date', 'Date', 'required');
+		if ($this->form_validation->run()==false):
+			$this->get_date();
+		else:
+			$date=$this->input->post('date');
+			//echo $date;
+			$date=date('Y-m-d',strtotime($date));
+			//echo $date."<br>";
+			$data['fitness']=$this->fitness_model->get_details_date($date);
+			if (!$data['fitness']):
+				echo "No data fetched";
+				$this->get_date();
+			else:
+			$this->load->view('templates/header');
+			$this->load->view('fitness/list_date',$data);
+			endif;
+		endif;
+	}
+
+
 }
 
 

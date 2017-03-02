@@ -36,5 +36,19 @@ class Fitness_model extends CI_Model{
 		return $query;
 	}
 
+	public function get_details_date($date=null)
+	{
+		$query=$this->db->select('*');
+		$query=$this->db->from ('fitness');
+		$query=$this->db->where('date',$date);
+		$query=$this->db->order_by('oid');
+		$query=$this->db->get();
+		if ($query->num_rows()>0):
+		return $query->result_array();
+		else:
+		return false;
+		endif;
+	}
+
 }
 ?>
