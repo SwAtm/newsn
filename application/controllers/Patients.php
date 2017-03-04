@@ -76,6 +76,9 @@ class Patients extends CI_Controller{
 		//echo $oid;
 		$result=$this->patients_model->get_pid($oid);
 		//print_r($result);
+		if (!$result):
+			die ("Not found <a href=".site_url('home').">Go home</a>");
+		endif;
 		$pid=$result->pid;
 		$data['patients']=$this->patients_model->get_details_opd($pid);
 		$data['spatients']=$this->patients_model->get_details_surgery($pid);
