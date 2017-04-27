@@ -4,9 +4,9 @@ echo validation_errors();
 $template=array('table_open'=>'<table border=1 align=center width=50%>');
 $this->table->set_template($template);
 $this->table->set_heading(array('data'=>'Form to record fitness', 'align'=>'center'));
-$this->table->set_caption('Selected patient: PID- '.$patients['pid']." || OID- ". $patients['oid']." || ".$patients['name']." ".$patients['add1']." ".$patients['add2']." ".$patients['phone']);
+$this->table->set_caption('Selected patient: ID- '.$patients['id']." || ".$patients['name']." ".$patients['add1']." ".$patients['add2']." ".$patients['phone']);
 //echo $this->table->add_row($patients[0]);
-echo form_open('fitness/add_update','',array('oid'=>$patients['oid'], 'todo'=>$todo));
+echo form_open('fitness/add_update','',array('id'=>$patients['id'], 'todo'=>$todo));
 	foreach ($mdata as $mdata1):
 		if ($mdata1->name=='oid'):
 			continue;

@@ -25,28 +25,36 @@ class Patients extends CI_Controller{
 			$this->load->view('patients/search');
 		else:
 			$name=$this->input->post('name');
+			if ($this->patients_model->get_list($name)):
 			$data['patients']=$this->patients_model->get_list($name);
+			else:
+			die ("Patient not found <a href=".site_url('home').">Go home</a href>");
+			endif;
 			$this->load->view('templates/header');
 			$this->load->view('patients/list', $data);
 		endif;
 		}
 		
-	public function get_details_pid($pid=null)
+	public function get_details_id($id=null)
 	{
 		if (!empty($_POST)):
-			$this->form_validation->set_rules('pid','PID','required');
+			$this->form_validation->set_rules('id','ID','required');
 			if ($this->form_validation->run()==false):
 				$this->load->view('templates/header');
 				$this->load->view('patients/search');
 				return;
 			else:
-			$pid=$this->input->post('pid');
+			$id=$this->input->post('id');
 			endif;
 		endif;
-		$data['patients']=$this->patients_model->get_details_opd($pid);
-		$data['spatients']=$this->patients_model->get_details_surgery($pid);
+		if ($this->patients_model->get_details_opd($id)):
+		$data['patients']=$this->patients_model->get_details_opd($id);
+		$data['spatients']=$this->patients_model->get_details_surgery($id);
 		$this->load->view('templates/header');
 		$this->load->view('patients/details',$data);
+		else:
+		die ("Patient not found <a href=".site_url('home').">Go home</a href>");
+		endif;
 	}
 	
 	
@@ -65,7 +73,7 @@ class Patients extends CI_Controller{
 		endif;
 	}*/	
 
-	public function get_list_oid($oid=null)
+	/*public function get_list_oid($oid=null)
 	{
 		$this->form_validation->set_rules('oid', 'OID', 'required');
 		if ($this->form_validation->run()==false):
@@ -86,12 +94,12 @@ class Patients extends CI_Controller{
 		$this->load->view('patients/details',$data);
 		endif;
 	}
-	
+		*/
 	
 	
 	
 	
 }
-	
+?>	
 	
 		

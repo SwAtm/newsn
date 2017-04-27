@@ -1,11 +1,11 @@
 <?php
 $template=array ('table_open'=>'<table border=1 align=center width=50%>');
 $this->table->set_template($template);
-$this->table->set_caption('Details of selected patient: PID-'.$patients[0]['pid']." ".$patients[0]['name']." ".$patients[0]['add1']." ".$patients[0]['add2']." ".$patients[0]['phone']);
+$this->table->set_caption('Details of selected patient: ID-'.$patients[0]['id']." ".$patients[0]['name']." ".$patients[0]['add1']." ".$patients[0]['add2']." ".$patients[0]['phone']);
 //echo $patients[0]['pid']." ".$patients[0]['add1']." ".$patients[0]['add2']." ".$patients[0]['phone']."<br>";
-$this->table->set_heading('Opd date','OID');
+$this->table->set_heading('Opd date','ID');
 foreach ($patients as $patients1):
-$this->table->add_row($patients1['date'],$patients1['oid']);
+$this->table->add_row($patients1['date'],$patients1['id']);
 //echo $patients1['date']." ".$patients1['oid']."<br>";
 endforeach;
 echo $this->table->generate();

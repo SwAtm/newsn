@@ -5,13 +5,13 @@ class Surgery_model extends CI_Model{
 		$this->load->database();
 	}
 	
-	public function get_details($oid=null)
+	public function get_details($id=null)
 	{
 		$query=$this->db->select('*');
 		$query=$this->db->from ('surgery');
-		$query=$this->db->where('oid',$oid);
+		$query=$this->db->where('id',$id);
 		$query=$this->db->get();
-		if ($query->num_rows()>0):
+		if ($query && $query->num_rows()>0):
 		return true;
 		else:
 		return false;

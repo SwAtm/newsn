@@ -12,36 +12,36 @@ class Fitness extends CI_Controller{
 		$this->load->library('table');
 	}
 
-	public function get_oid()
+	public function get_id()
 	{
 		$this->load->view('templates/header');
-		$this->load->view('fitness/get_oid');
+		$this->load->view('fitness/get_id');
 		$this->load->view('fitness/footer');
 	}
 	
-	public function get_details_oid($oid=null)
+	public function get_details_id($id=null)
 	{
-		$this->form_validation->set_rules('oid', 'OID', 'required');
+		$this->form_validation->set_rules('id', 'ID', 'required');
 		if ($this->form_validation->run()==false):
-		$this->get_oid();
+		$this->get_id();
 		else:
-		$oid=$this->input->post('oid');
+		$id=$this->input->post('id');
 		//check if already added to surgery table and accordigly steer.
-			if ($this->surgery_model->get_details($oid)):
-				$display=$this->fitness_model->get_details_oid($oid);
+			if ($this->surgery_model->get_details($id)):
+				$display=$this->fitness_model->get_details_id($id);
 				echo '<pre>'; print_r($display); echo '</pre>';
 				die ("Patient already added to surgery table. Cannot add/edit<br><a href=get_oid>Continue</a>");
 			endif;
 		//check if oid exists
-			if (!$data['patients']=$this->patients_model->get_details_oid($oid)):
-				die ("Pl check OID. <br><a href=get_oid>Continue</a>");
+			if (!$data['patients']=$this->patients_model->get_details_opd($id)):
+				die ("Pl check ID. <br><a href=get_oid>Continue</a>");
 			endif;
 				
 		$data['mdata']=$this->fitness_model->get_mdata();
-		$data['fitness']=$this->fitness_model->get_details_oid($oid);
-			if (!empty($data['fitness'])):
-			$data['todo']="Update";
-			$data['fitness']['date']=date('d-m-Y',strtotime($data['fitness']['date']));
+			if ($this->fitness_model->get_details_id($id)):
+				$data['fitness']=$this->fitness_model->get_details_id($id);
+				$data['todo']="Update";
+				$data['fitness']['date']=date('d-m-Y',strtotime($data['fitness']['date']));
 			else:
 			$data['todo']="Add";
 			foreach ($data['mdata'] as $mdata1):
@@ -68,10 +68,10 @@ class Fitness extends CI_Controller{
 			endif;
 		endforeach;
 		if ($this->form_validation->run()==false):
-			$oid=$this->input->post('oid');
+			$id=$this->input->post('id');
 			$data['todo']=$_POST['todo'];
 			
-			$data['patients']=$this->patients_model->get_details_oid($oid);
+			$data['patients']=$this->patients_model->get_details_opd($id);
 
 			if (isset($data['fitness'])):
 				unset($data['fitness']);
