@@ -6,6 +6,7 @@ class Patients_model extends CI_Model{
 	}
 	
 	public function get_list($name)
+	//called by patients/get_list
 	{
 		$query=$this->db->select('id, name, add1, add2, phone');
 		$query=$this->db->from('patients');
@@ -20,26 +21,29 @@ class Patients_model extends CI_Model{
 	}
 	
 	public function get_details_opd($id)
+	//called by patients/get_details_id
 	{
 		$query=$this->db->select('*');
 		$query=$this->db->from('patients');
 		$query=$this->db->where('id',$id);
 		$query=$this->db->get();
 		if ($query && $query->num_rows()>0):
-		return $query->result_array();
+		return $query->row_array();
 		else:
 		return false;
 		endif;
 	}
 
 	public function get_details_surgery($id)
+		//called by patients/get_details_id
+
 	{
-		$query=$this->db->select('patients.id, patients.name, patients.add1, patients.add2, patients.phone, surgery.ipno, surgery.dos, surgery.opd_eye, surgery.Surgeon');
+		$query=$this->db->select('patients.id, patients.name, patients.add1, patients.add2, patients.phone, surgery.ipno, surgery.dos, surgery.eye, surgery.surgeon');
 		$query=$this->db->from('patients');
 		$query=$this->db->join('surgery','patients.id=surgery.id','left');
 		$query=$this->db->where('patients.id',$id);
 		$query=$this->db->get();
-		return $query->result_array();
+		return $query->row_array();
 		
 	}
 	

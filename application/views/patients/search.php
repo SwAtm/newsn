@@ -13,7 +13,7 @@ echo form_close();
 //$template=array('table_open'=>'<table border=1 align=center width=50%');
 $this->table->set_template(array('table_open'=>'<table border=1 align=center width=50%>'));
 $this->table->set_heading(array('data'=>'Search form to search patients', 'align'=>'center'));
-echo form_open('patients/get_details_pid');
+echo form_open('patients/get_details_id');
 $this->table->add_row(form_label('Type ID','id'));
 $this->table->add_row(form_input('id'));
 $this->table->add_row(form_submit('submit','Submit'));
