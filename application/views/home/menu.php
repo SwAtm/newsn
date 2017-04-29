@@ -44,7 +44,7 @@ window.location.href=url
 <form name="fitness">
 <select name="selectname" size="1" onChange="pulldown_fitness()">
 <option value=""> Fitness</option>
-<option value="fitness/get_oid">Record Fitness
+<option value="fitness/get_id">Record Fitness
 <option value="fitness/get_date">List Fitness
 </select>
 </form>

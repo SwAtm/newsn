@@ -16,7 +16,7 @@ class Fitness extends CI_Controller{
 	{
 		$this->load->view('templates/header');
 		$this->load->view('fitness/get_id');
-		$this->load->view('fitness/footer');
+		$this->load->view('templates/footer');
 	}
 	
 	public function get_details_id($id=null)
@@ -26,16 +26,17 @@ class Fitness extends CI_Controller{
 		$this->get_id();
 		else:
 		$id=$this->input->post('id');
+		//check if id exists
+			if (!$data['patients']=$this->patients_model->get_details_opd($id)):
+				die ("Pl check ID. <br><a href=get_id>Continue</a>");
+			endif;
 		//check if already added to surgery table and accordigly steer.
 			if ($this->surgery_model->get_details($id)):
 				$display=$this->fitness_model->get_details_id($id);
 				echo '<pre>'; print_r($display); echo '</pre>';
-				die ("Patient already added to surgery table. Cannot add/edit<br><a href=get_oid>Continue</a>");
+				die ("Patient already added to surgery table. Cannot add/edit<br><a href=get_id>Continue</a>");
 			endif;
-		//check if oid exists
-			if (!$data['patients']=$this->patients_model->get_details_opd($id)):
-				die ("Pl check ID. <br><a href=get_oid>Continue</a>");
-			endif;
+		
 				
 		$data['mdata']=$this->fitness_model->get_mdata();
 			if ($this->fitness_model->get_details_id($id)):
@@ -98,15 +99,22 @@ class Fitness extends CI_Controller{
 					$post[$mdata1->name]=date('Y-m-d',strtotime($post[$mdata1->name]));
 				endif;
 				$data[$mdata1->name]=$post[$mdata1->name];
-				endforeach;
+			endforeach;
 			if ("Add"==$todo):
-				$this->fitness_model->add($data);
+				if ($this->fitness_model->add($data)):
 				echo "record added";
+				else:
+				die ("Could not add record. <a href=get_id>Continue</a>");
+				endif;
 			else:
-				$this->fitness_model->update($data);
+				if ($this->fitness_model->update($data)):
 				echo "record updated ";
+				else:
+				die ("Could not update record. <a href=get_id>Continue</a>");
+				endif;
+	
 			endif;
-			echo "<a href=get_oid>Continue</a>";
+			echo "<a href=get_id>Continue</a>";
 		endif;	
 		
 	}
@@ -115,7 +123,7 @@ class Fitness extends CI_Controller{
 	{
 		$this->load->view('templates/header');
 		$this->load->view('fitness/get_date');
-		$this->load->view('fitness/footer');
+		$this->load->view('templates/footer');
 	}
 		
 	public function get_details_date($date=null)
@@ -141,6 +149,3 @@ class Fitness extends CI_Controller{
 
 
 }
-
-
-

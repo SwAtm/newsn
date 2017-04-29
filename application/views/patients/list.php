@@ -1,4 +1,5 @@
 <?php
+//called by patients/get_list
 echo "<a href=".site_url('patients/search').">Go back</a><br>";
 echo "<table border align=center><tr><td>ID</td><td>Name and Address</td><td>Phone No</td></tr>";
 echo "<caption><h3>List of likely patients<br>Please click on ID to get details</h3></caption>";

@@ -1,4 +1,5 @@
 <?php
+//called by fitness/get_date
 echo validation_errors();
 $template=array('table_open'=>'<table border=1 align=center width=50%>');
 $this->table->set_template($template);

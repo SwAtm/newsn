@@ -6,6 +6,7 @@ class Surgery_model extends CI_Model{
 	}
 	
 	public function get_details($id=null)
+	//called by fitness/get_details_id
 	{
 		$query=$this->db->select('*');
 		$query=$this->db->from ('surgery');

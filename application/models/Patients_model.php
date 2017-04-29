@@ -21,7 +21,8 @@ class Patients_model extends CI_Model{
 	}
 	
 	public function get_details_opd($id)
-	//called by patients/get_details_id
+	//called by patients/get_details_id, fitness/get_details_id, fitness/add_update
+	
 	{
 		$query=$this->db->select('*');
 		$query=$this->db->from('patients');

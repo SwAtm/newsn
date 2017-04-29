@@ -14,7 +14,7 @@ class Patients extends CI_Controller{
 	{
 		$this->load->view('templates/header');
 		$this->load->view('patients/search');
-		$this->load->view('patients/footer');
+		$this->load->view('templates/footer');
 	}
 	
 	public function get_list($name=null)

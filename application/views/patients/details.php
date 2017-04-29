@@ -1,4 +1,5 @@
 <?php
+//called by patients/get_details_id
 $template=array ('table_open'=>'<table border=1 align=center width=50%>');
 $this->table->set_template($template);
 $this->table->set_caption('Details of selected patient: ID-'.$patients['id']." ".$patients['name']." ".$patients['add1']." ".$patients['add2']." ".$patients['phone']);
