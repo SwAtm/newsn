@@ -48,6 +48,14 @@ class Patients_model extends CI_Model{
 		
 	}
 	
+		public function get_mdata()
+	//called by patients/add
+	{
+		$query=$this->db->field_data('patients');
+		return $query;
+	}
+
+	
 /*	public function get_details_oid($oid)
 	{
 		$query=$this->db->select('patients.*, opd.oid');

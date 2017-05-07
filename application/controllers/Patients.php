@@ -10,6 +10,42 @@ class Patients extends CI_Controller{
 		$this->load->library('table');
 
 	}
+	
+	public function add()
+	{
+		
+		foreach ($_POST as $key=>$value):
+			if ('phone'==$key||'add2'==$key):
+				continue;
+			endif;
+		$this->form_validation->set_rules($key, ucfirst($key), 'trim|required');
+		endforeach;
+		
+		if ($this->form_validation->run()==false):
+		$data['patients']=array(
+						array('label'=>'name', 'name'=>'name','max_len'=>'30'),
+						array('label'=>'address', 'name'=>'add1','max_len'=>'30'),
+						array('label'=>'address', 'name'=>'add2','max_len'=>'30'),
+						array('label'=>'taluq', 'name'=>'taluq','max_len'=>'30'),
+						array('label'=>'district', 'name'=>'district','max_len'=>'30'),
+						array('label'=>'phone', 'name'=>'phone','max_len'=>'15'),
+						array('label'=>'age', 'name'=>'age','max_len'=>'2'),
+						array('label'=>'sex', 'name'=>'sex', 'options'=>array (''=>'Select','M'=>'Male', 'F'=>'Female')),
+						array('label'=>'language', 'name'=>'language', 'options'=>array (''=>'Select','K'=>'Kannada', 'M'=>'Marathi','H'=>'Hindi'))
+
+						);
+		$this->load->view('templates/header');
+		$this->load->view('patients/add', $data);
+		else:
+		echo "Validated<br>";
+		$y=$_POST['age'];
+		$yob=Date("Y")-$y;
+		$_POST['age']=$yob."-01-01";
+		print_r($_POST);
+		endif;	
+	}
+	
+	
 	public function search()
 	{
 		$this->load->view('templates/header');
