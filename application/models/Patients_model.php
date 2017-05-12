@@ -55,6 +55,94 @@ class Patients_model extends CI_Model{
 		return $query;
 	}
 
+		public function finddate ($y,$m) 
+		{
+		//called by patients/add	
+			
+			if ($y==0):
+				$y=Date("Y");
+			else:
+				$y=Date("Y")-$y;
+			endif;
+			if ($m>Date("m")):
+				$m=$m-Date("m");
+				$m=12-$m;
+				$y=$y-1;
+			elseif ($m==Date("m")):
+				$m=1;
+			else:
+				$m=Date("m")-$m;
+			endif;
+		return array($y, $m);
+	}
+	
+		public function get_max_opdno($date=null)
+		//called by patients/add
+		{
+			$query=$this->db->select_max('opdno');
+			$query=$this->db->from('patients');
+			$query=$this->db->where('date', $date);
+			$query=$this->db->get();
+			if ($query):
+				return $query->row();
+			else:
+				return false;
+			endif;
+		}
+		
+		public function add_to_db($data)
+		//called by patients/add
+	{
+		$this->db->insert('patients',$data);
+		return true;
+	}
+	
+		public function get_id($opdno, $date)
+		//called by patients/add
+		{
+			$query=$this->db->select('id');
+			$query=$this->db->from ('patients');
+			$query=$this->db->where('date',$date);
+			$query=$this->db->where('opdno', $opdno);
+			$query=$this->db->get();
+			if ($query):
+				return $query->row();
+			else:
+				return false;
+			endif;
+		}
+
+
+		public function finddiff($rowd)
+		//find diff bet today and a given date in years and months. given date in yyyy-mm-dd format.
+		//called by patients/print_opd
+{
+		$since=explode('-',$rowd);
+		$y1=$since[0];
+		$m1=$since[1];
+		$y2=Date('Y');
+		$m2=Date('m');
+			if ($y1==$y2):
+				$y=0;
+				if ($m1==$m2):
+				$m = 1;
+				else:
+				$m=$m2-$m1;
+				endif;
+			else:
+				$y=$y2-$y1;
+				if($m2<$m1):
+					$m=12-$m1+$m2;
+					$y=$y-1;
+				elseif ($m2>$m1):
+					$m=$m2-$m1;
+				else:
+					$m=0;
+				endif;
+			endif;
+	return array($y, $m);
+}
+			
 	
 /*	public function get_details_oid($oid)
 	{
