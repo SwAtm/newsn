@@ -44,7 +44,7 @@ $pdf->Cell(20,6,'Any Other: ',0,0,'L');
 $pdf->Cell(0,6,"$remark",0,1,'L');
 $pdf->ln();
 $pdf->ln();
-$filename="/d/EyeCamp/opd.pdf";
+$filename=SAVEPATH."opd.pdf";
 $pdf->Output($filename);
 //$cmd="$pdfprint -print-to $printer $filename";
 //system($cmd);
