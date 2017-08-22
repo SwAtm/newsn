@@ -19,9 +19,9 @@ window.location.href=url
 <select name="selectname" size="1" onChange="pulldown_patients()">
 <option value=""> PATIENTS</option>
 <option value="patients/add"> Add
-<option value="patients/edit"> Edit
+<option value="patients/get_id_edit"> Edit
 <option value="patients/view"> View
-<option value="patients/view_date"> View A day's Table
+<option value="patients/get_date_view"> View A day's Table
 <option value="patients/search"> Search Patient
 </select>
 </form>

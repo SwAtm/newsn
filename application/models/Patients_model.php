@@ -21,7 +21,7 @@ class Patients_model extends CI_Model{
 	}
 	
 	public function get_details_opd($id)
-	//called by patients/get_details_id, fitness/get_details_id, fitness/add_update
+	//called by patients/get_details_id, fitness/get_details_id, fitness/add_update, patients/edit
 	
 	{
 		$query=$this->db->select('*');
@@ -115,7 +115,7 @@ class Patients_model extends CI_Model{
 
 		public function finddiff($rowd)
 		//find diff bet today and a given date in years and months. given date in yyyy-mm-dd format.
-		//called by patients/print_opd
+		//called by patients/print_opd, patients/edit
 {
 		$since=explode('-',$rowd);
 		$y1=$since[0];
@@ -142,8 +142,25 @@ class Patients_model extends CI_Model{
 			endif;
 	return array($y, $m);
 }
-			
-	
+	public function patients_update($data, $id){
+		//called by patients/edit
+	$this->db->update('patients',$data, array('id'=>$id));
+		return true;
+	}
+
+
+	public function get_details_date($date){
+		//called by patients/view_date
+		$query=$this->db->select('*');
+		$query=$this->db->from('patients');
+		$query=$this->db->where('date',$date);
+		$query=$this->db->get();
+		if ($query && $query->num_rows()>0):
+		return $query->result_array();
+		else:
+		return false;
+		endif;
+	}
 /*	public function get_details_oid($oid)
 	{
 		$query=$this->db->select('patients.*, opd.oid');
