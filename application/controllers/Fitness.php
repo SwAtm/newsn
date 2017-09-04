@@ -3,7 +3,7 @@ class Fitness extends CI_Controller{
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('patients_model');
+		$this->load->model('opd_model');
 		$this->load->model('fitness_model');
 		$this->load->model('surgery_model');
 		$this->load->helper('url_helper');
@@ -27,7 +27,7 @@ class Fitness extends CI_Controller{
 		else:
 		$id=$this->input->post('id');
 		//check if id exists
-			if (!$data['patients']=$this->patients_model->get_details_opd($id)):
+			if (!$data['patients']=$this->opd_model->get_details_opd($id)):
 				die ("Pl check ID. <br><a href=get_id>Continue</a>");
 			endif;
 		//check if already added to surgery table and accordigly steer.
@@ -64,15 +64,15 @@ class Fitness extends CI_Controller{
 	{
 		$mdata=$this->fitness_model->get_mdata();
 		foreach ($mdata as $mdata1):	
-			if ('remark'!==$mdata1->name):
+			//if ('remark'!==$mdata1->name):
 			$this->form_validation->set_rules($mdata1->name, ucfirst($mdata1->name), 'required');
-			endif;
+			//endif;
 		endforeach;
 		if ($this->form_validation->run()==false):
 			$id=$this->input->post('id');
 			$data['todo']=$_POST['todo'];
 			
-			$data['patients']=$this->patients_model->get_details_opd($id);
+			$data['patients']=$this->opd_model->get_details_opd($id);
 
 			if (isset($data['fitness'])):
 				unset($data['fitness']);

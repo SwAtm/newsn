@@ -43,9 +43,10 @@ class Fitness_model extends CI_Model{
 	public function get_details_date($date=null)
 	//called by fitness/get_details_date
 	{
-		$query=$this->db->select('*');
+		$query=$this->db->select('fitness.*, opd.name');
 		$query=$this->db->from ('fitness');
-		$query=$this->db->where('date',$date);
+		$query=$this->db->join ('opd','fitness.id=opd.id','inner');
+		$query=$this->db->where('fitness.date',$date);
 		$query=$this->db->order_by('id');
 		$query=$this->db->get();
 		if ($query && $query->num_rows()>0):

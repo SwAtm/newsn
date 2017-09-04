@@ -6,23 +6,23 @@ Print "<tr bgcolor=magenta><td valign=center align=middle>";
 ?>
 
 <script language="JavaScript">
-function pulldown_patients()
+function pulldown_opd()
 {
-var url=document.patients.selectname.options[document.patients.selectname.selectedIndex].value
+var url=document.opd.selectname.options[document.opd.selectname.selectedIndex].value
 var site_url='<?php echo site_url();?>';
 url=site_url+"/"+url
 window.location.href=url
 }
 </script>
 
-<form name="patients">
-<select name="selectname" size="1" onChange="pulldown_patients()">
-<option value=""> PATIENTS</option>
-<option value="patients/add"> Add
-<option value="patients/get_id_edit"> Edit
-<option value="patients/view"> View
-<option value="patients/get_date_view"> View A day's Table
-<option value="patients/search"> Search Patient
+<form name="opd">
+<select name="selectname" size="1" onChange="pulldown_opd()">
+<option value=""> OPD</option>
+<option value="opd/add"> Add
+<option value="opd/get_id_edit"> Edit
+<option value="opd/get_id_print"> Print OPD Slip
+<option value="opd/get_date_view"> View A day's Table
+<option value="opd/search"> Search Patient
 </select>
 </form>
 <?php
