@@ -253,6 +253,7 @@ class Opd extends CI_Controller{
 				//$row=$this->opd_model->get_details_opd($id);
 			//print_r($row);
 			$data['id']=$id;
+			//html_escape($row);
 			if ("0000-00-00"==$row['dm']):
 				$row['dmy']='';
 				$row['dmm']='';

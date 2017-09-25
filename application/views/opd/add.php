@@ -7,10 +7,10 @@ echo validation_errors();
 $template=array('table_open'=>'<table border=1 align=center');
 $this->table->set_template($template);
 $this->table->set_heading(array('data'=>'Form to enter new patient', 'align'=>'center', 'colspan'=>'5'));
-echo form_open('opd/add');
+echo form_open('opd/add', array('id'=>'formtoadd'));
 	foreach ($patients as $patients1):
 	$cell=array('data'=>(isset($patients1['options'])? (form_dropdown($patients1['name'],$patients1['options'],set_value($patients1['name']))):
-	(form_input(array('name'=>$patients1['name'], 'maxlength'=>$patients1['max_len'], 'size'=>$patients1['max_len'], 'value'=>set_value($patients1['name']))))), 'colspan'=>'4');
+	(form_input(array('name'=>$patients1['name'], 'maxlength'=>$patients1['max_len'], 'size'=>$patients1['max_len'], 'id'=>$patients1['name'], 'value'=>set_value($patients1['name']))))), 'colspan'=>'4');
 	$this->table->add_row(form_label(ucfirst($patients1['label'])), $cell);
 	endforeach;
 
@@ -28,4 +28,11 @@ $cellhome=array('data'=>"<a href=".site_url('home').">GO back</a>", 'colspan'=>'
 $this->table->add_row($cellhome);
 echo $this->table->generate();
 echo form_close();
+
+?>
+	<script type="text/javascript" language="JavaScript">
+	document.forms['formtoadd'].elements['name'].focus();
+	</script>
+<?php
+
 ?>

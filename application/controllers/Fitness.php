@@ -91,6 +91,7 @@ class Fitness extends CI_Controller{
 
 
 		else:
+			$this->load->view('templates/header');
 			$post=$this->input->post();
 			$todo=$post['todo'];
 			
@@ -102,19 +103,19 @@ class Fitness extends CI_Controller{
 			endforeach;
 			if ("Add"==$todo):
 				if ($this->fitness_model->add($data)):
-				echo "record added";
+				$this->output->append_output("record added");
 				else:
 				die ("Could not add record. <a href=get_id>Continue</a>");
 				endif;
 			else:
 				if ($this->fitness_model->update($data)):
-				echo "record updated ";
+				$this->output->append_output("record updated");
 				else:
 				die ("Could not update record. <a href=get_id>Continue</a>");
 				endif;
 	
 			endif;
-			echo "<a href=get_id>Continue</a>";
+			$this->output->append_output("<br><a href=get_id>Continue</a>");
 		endif;	
 		
 	}

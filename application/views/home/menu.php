@@ -65,11 +65,38 @@ window.location.href=url
 <form name="surgery">
 <select name="selectname" size="1" onChange="pulldown_surgery()">
 <option value=""> Surgery</option>
-<option value="surgery/add">Add
-<option value="surgery/edit">Edit
-<option value="surgery/allotip">Allott IP Number
+<option value="surgery/get_id_add">Add
+<option value="surgery/get_id_edit">Edit
+<option value="surgery/get_id_allot">Allott IP Number
+<option value="surgery/get_date">Printed Reports
 </select>
 </form>
+<?php
+Print "</td>";
+
+
+Print "<td  valign=centre align=middle>";
+?>
+<script language="JavaScript">
+function pulldown_misc()
+{
+var url=document.misc.selectname.options[document.misc.selectname.selectedIndex].value
+var site_url='<?php echo site_url();?>';
+url=site_url+"/"+url
+window.location.href=url
+}
+</script>
+<form name="misc">
+<select name="selectname" size="1" onChange="pulldown_misc()">
+<option value=""> Miscellaneous</option>
+<option value="misc/get_dates">Reports
+<option value="contacts/get_contacts">Contacts
+</select>
+</form>
+
+
+
+
 <!--
 <option value="preopchart.php">Print Pre-Op Chart
 <option value="printip.php">Print IP Card

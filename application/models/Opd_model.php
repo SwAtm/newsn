@@ -21,7 +21,7 @@ class opd_model extends CI_Model{
 	}
 	
 	public function get_details_opd($id)
-	//called by opd/get_details_id, fitness/get_details_id, fitness/add_update, opd/edit
+	//called by opd/get_details_id, fitness/get_details_id, fitness/add_update, opd/edit, surgery/add
 	
 	{
 		$query=$this->db->select('*');
@@ -115,7 +115,7 @@ class opd_model extends CI_Model{
 
 		public function finddiff($rowd)
 		//find diff bet today and a given date in years and months. given date in yyyy-mm-dd format.
-		//called by opd/print_opd, opd/edit
+		//called by opd/print_opd, opd/edit, surgery/get_date
 {
 		$since=explode('-',$rowd);
 		$y1=$since[0];
@@ -161,6 +161,26 @@ class opd_model extends CI_Model{
 		return false;
 		endif;
 	}
+
+	public function count_opd($s, $sdate, $edate)
+	{
+	//called by misc/get_dates
+		$query=$this->db->select('id');
+		$query=$this->db->from('opd');
+		$query=$this->db->where('date>=',$sdate);
+		$query=$this->db->where('date<=',$edate);
+		$query=$this->db->where('sex',ucfirst($s));
+		$m = $this->db->count_all_results();
+		if ($m!=0):
+		return $m;
+		else:
+		return false;
+		endif;
+	}
+
+
+
+
 /*	public function get_details_oid($oid)
 	{
 		$query=$this->db->select('opd.*, opd.oid');

@@ -22,7 +22,7 @@ echo validation_errors();
 $template=array('table_open'=>'<table border=1 align=center width=50%>');
 $this->table->set_template($template);
 $this->table->set_heading(array('data'=>'List OPD', 'align'=>'center'));
-echo form_open('opd/view_date');
+echo form_open('opd/view_date', array('id'=>'getdate'));
 $this->table->add_row(form_label('Enter Date','date'));
 $attribute=array('name'=>'date','id'=>"dt");
 //$js = 'onClick="datepicker()"';
