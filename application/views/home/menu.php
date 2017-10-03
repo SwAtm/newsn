@@ -91,6 +91,7 @@ window.location.href=url
 <option value=""> Miscellaneous</option>
 <option value="misc/get_dates">Reports
 <option value="contacts/get_contacts">Contacts
+<option value="misc/backup">Take a backup
 </select>
 </form>
 

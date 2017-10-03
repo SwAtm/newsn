@@ -98,5 +98,14 @@ class Misc extends CI_Controller{
 				endif;
 			endif;
 	}
+	
+		public function backup()
+		{
+		
+			$this->surgery_model->db_backup();
+			$this->load->view('templates/header');
+			$this->output->append_output("Backup taken at".SAVEPATH."<a href=".site_url('home').">Home</a>");
+		
+		}
 }
 ?>

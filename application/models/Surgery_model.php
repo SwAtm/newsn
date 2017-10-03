@@ -177,7 +177,7 @@ class Surgery_model extends CI_Model{
     return $new_array;
 }
 	public function db_backup()
-	//called by surgery/get_date
+	//called by surgery/get_date, misc/backup
 {
        
        $backup = $this->dbutil->backup();  
