@@ -6,6 +6,7 @@ class Surgery extends CI_Controller{
 		$this->load->model('opd_model');
 		$this->load->model('fitness_model');
 		$this->load->model('surgery_model');
+		$this->load->model('contacts_model');
 		$this->load->helper('url_helper');
 		$this->load->helper('form');
 		$this->load->library('form_validation');
@@ -13,8 +14,10 @@ class Surgery extends CI_Controller{
 		$this->load->helper('pdf_helper');
 		$this->load->dbutil();
 		$this->load->helper('file');
-		//$this->output->enable_profiler(TRUE);
+//		$this->output->enable_profiler(TRUE);
+		//$this->define('ENVIRONMENT', 'development');
 	}
+	
 	
 	public function get_id_add(){
 		//set validation rules:
@@ -61,10 +64,24 @@ class Surgery extends CI_Controller{
 				endif;
 				$remark.=ucfirst(trim($key)).': '.ucfirst(trim($val)).', ';
 			endforeach;
+			
+			
+			if ($surgeon=$this->contacts_model->get_surgeons()):
+				foreach ($surgeon as $k=>$v):
+					$surgeon1[$v['Hon']." ".$v['Name']]=$v['Hon']." ".$v['Name'];
+				endforeach;
+			else:
+			die ("No surgeon found. Add atleast one in contacts table");
+			endif;
+			//print_r($surgeon1);
+			unset ($surgeon);
+			
+			
 			$data=array();
 			$data['opd']=$opd;
 			$data['remark']=$remark;
 			$data['mdata']=$this->surgery_model->get_mdata();
+			$data['surgeon']=$surgeon1;
 			$this->load->view('templates/header');
 			$this->load->view('surgery/add',$data);
 			$this->load->view('templates/footer');
@@ -118,10 +135,22 @@ class Surgery extends CI_Controller{
 					endif;
 				$opd=$this->opd_model->get_details_opd($id);
 				
+				$surgeon=$this->contacts_model->get_surgeons();
+				foreach ($surgeon as $k=>$v):
+					$surgeon1[$v['Hon']." ".$v['Name']]=$v['Hon']." ".$v['Name'];
+				endforeach;
+				
+			
+			
+			//print_r($surgeon1);
+				unset ($surgeon);
+				
+				
 				unset($surgery['ipno']);
 				$data['surgery']=$surgery;
 				$data['opd']=$opd;
 				$data['surgery']['dos']=date('d-m-Y',strtotime($data['surgery']['dos']));
+				$data['surgeon']=$surgeon1;
 				$this->load->view('templates/header');
 				$this->load->view('surgery/edit',$data);
 				$this->load->view('templates/footer');

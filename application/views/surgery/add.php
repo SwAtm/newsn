@@ -46,7 +46,7 @@ endforeach;
 echo "<tr><td>Eye to be Operated</td><td colspan=2>".form_dropdown('eye', array('L'=>'Left','R'=>'Right'))."</td></tr>";
 
 echo "<tr><td>GVP?</td><td>Yes".form_radio('gvp','yes',false)."</td><td>No".form_radio('gvp','no',true)."</td></tr>";
-echo "<tr><td>Surgeon</td><td colspan=2>".form_dropdown('surgeon', array('Dr. Yakkundi'=>'Dr. Yakkundi','Dr. Preeti Zingade'=>'Dr Preeti Zingade', 'Dr. Praveen'=>'Dr. Praveen'), 'Dr.Yakkundi')."</td></tr>";
+echo "<tr><td>Surgeon</td><td colspan=2>".form_dropdown('surgeon', $surgeon, 'Dr.Yakkundi')."</td></tr>";
 echo "<tr><td>Remark</td><td colspan='2'>".form_textarea(array('name'=>'remark','value'=>$remark,'maxlength'=>'1000'))."</td></tr>";
 echo "<tr><td colspan=3 align=center>".form_submit('submit','Submit')."</td></tr></table>";
 ?>
