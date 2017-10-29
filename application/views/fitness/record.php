@@ -12,7 +12,12 @@ echo form_open('fitness/add_update','',array('id'=>$patients['id'], 'todo'=>$tod
 		if ($mdata1->name=='id'):
 			continue;
 		endif;
-	$this->table->add_row(form_label(ucfirst($mdata1->name)));
+		if ($mdata1->name=='medication'):
+			$this->table->add_row(form_label(ucfirst($mdata1->name." apart from for HTN and DM")));
+		else:
+			$this->table->add_row(form_label(ucfirst($mdata1->name)));
+		endif;	
+	
 	$this->table->add_row(form_input(array('name'=>$mdata1->name, 'maxlength'=>$mdata1->max_length, 'size'=>$mdata1->max_length, 'value'=>$fitness[$mdata1->name])));
 	endforeach;
 

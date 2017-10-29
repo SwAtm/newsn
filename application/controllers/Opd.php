@@ -41,7 +41,7 @@ class Opd extends CI_Controller{
 						array ('label'=>'History of DM','label1'=>'Years', 'label2'=>'Months', 'name1'=>'dmy', 'name2'=>'dmm', 'max_len'=>'2'),
 						array ('label'=>'History of HTN','label1'=>'Years', 'label2'=>'Months', 'name1'=>'hty', 'name2'=>'htm', 'max_len'=>'2')
 						);
-		$data['remark']=array('label'=>'remark', 'name'=>'remark', 'max_len'=>'50');
+		$data['remark']=array('label'=>'Remark-Only critical e.g. h/o Cardiac/Psychic ailments', 'name'=>'remark', 'max_len'=>'50');
 		
 		$this->load->view('templates/header');
 		$this->load->view('opd/add', $data);
