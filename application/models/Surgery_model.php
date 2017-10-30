@@ -179,8 +179,11 @@ class Surgery_model extends CI_Model{
 	public function db_backup()
 	//called by surgery/get_date, misc/backup
 {
-       
-       $backup = $this->dbutil->backup();  
+       $pref=array(
+		'add_drop'=> TRUE,
+		'add_insert'=>TRUE,
+		'foreign_key_checks'=>FALSE);
+       $backup = $this->dbutil->backup($pref);  
        write_file(SAVEPATH.date('dmYHi').".zip", $backup);
 }
 
