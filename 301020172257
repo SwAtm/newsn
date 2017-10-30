@@ -1,0 +1,99 @@
+SET foreign_key_checks = 0;
+#
+# TABLE STRUCTURE FOR: contacts
+#
+
+DROP TABLE IF EXISTS `contacts`;
+
+CREATE TABLE `contacts` (
+  `No` int(5) NOT NULL AUTO_INCREMENT,
+  `Hon` varchar(5) NOT NULL,
+  `Name` varchar(35) NOT NULL,
+  `Category` varchar(15) NOT NULL,
+  `Phone` varchar(30) NOT NULL,
+  PRIMARY KEY (`No`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+#
+# TABLE STRUCTURE FOR: fitness
+#
+
+DROP TABLE IF EXISTS `fitness`;
+
+CREATE TABLE `fitness` (
+  `id` int(11) NOT NULL,
+  `chest_pain` varchar(25) NOT NULL,
+  `palpitation` varchar(25) NOT NULL,
+  `breathlessness` varchar(25) NOT NULL,
+  `allergy` varchar(25) NOT NULL,
+  `vertigo_headache` varchar(25) NOT NULL,
+  `acidity` varchar(25) NOT NULL,
+  `fits` varchar(10) NOT NULL,
+  `involuntary_move` varchar(10) NOT NULL,
+  `pedal_oedema` varchar(25) NOT NULL,
+  `prev_sx_admission` varchar(100) NOT NULL,
+  `other_ailment` varchar(100) NOT NULL,
+  `focus_of_infection` varchar(100) NOT NULL,
+  `medication` varchar(100) NOT NULL,
+  `alcohol_smoking` varchar(25) NOT NULL,
+  `remark` varchar(100) NOT NULL,
+  `date` date NOT NULL,
+  PRIMARY KEY (`id`),
+  CONSTRAINT `fitness_ibfk_1` FOREIGN KEY (`id`) REFERENCES `opd` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+#
+# TABLE STRUCTURE FOR: opd
+#
+
+DROP TABLE IF EXISTS `opd`;
+
+CREATE TABLE `opd` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `opdno` int(11) NOT NULL,
+  `name` char(30) NOT NULL,
+  `add1` char(30) NOT NULL,
+  `add2` char(30) NOT NULL,
+  `taluq` char(30) NOT NULL,
+  `district` varchar(30) NOT NULL,
+  `phone` char(15) NOT NULL,
+  `dm` date DEFAULT NULL,
+  `htn` date DEFAULT NULL,
+  `dob` date NOT NULL,
+  `sex` char(1) NOT NULL,
+  `remark` varchar(50) NOT NULL,
+  `language` varchar(2) DEFAULT NULL,
+  `date` date NOT NULL,
+  `advice` varchar(30) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+#
+# TABLE STRUCTURE FOR: surgery
+#
+
+DROP TABLE IF EXISTS `surgery`;
+
+CREATE TABLE `surgery` (
+  `id` int(11) NOT NULL,
+  `ipno` int(11) DEFAULT NULL,
+  `dos` date NOT NULL,
+  `eye` varchar(2) NOT NULL,
+  `k1` decimal(4,2) NOT NULL,
+  `k2` decimal(4,2) NOT NULL,
+  `al` decimal(4,2) NOT NULL,
+  `iol` decimal(4,2) NOT NULL,
+  `ecg` varchar(20) NOT NULL,
+  `bp` varchar(30) NOT NULL,
+  `rbs` varchar(30) NOT NULL,
+  `sac` varchar(10) NOT NULL,
+  `iop` varchar(10) NOT NULL,
+  `remark` varchar(1000) NOT NULL,
+  `surgeon` varchar(30) NOT NULL,
+  `gvp` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `ipno` (`ipno`),
+  CONSTRAINT `surgery_ibfk_1` FOREIGN KEY (`id`) REFERENCES `opd` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+SET foreign_key_checks = 1;
