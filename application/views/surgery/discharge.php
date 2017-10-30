@@ -32,7 +32,8 @@ $pdf->MultiCell(59,8,"9. MAzÀÄ ªÁgÀzÀ £ÀAvÀgÀ vÀ¯ÉUÉ ¸Àé®à Ju
 //page1
 $xd=158;
 $pdf->SetXY(158,10);
-$pdf->Image ($base.'/logo.jpg', '158', '10', '', '15');
+//$pdf->Image ($base.'/logo.jpg', '158', '10', '', '15');
+$pdf->Image (IMGPATH.'logo.jpg', '158', '10', '', '15');
 $pdf->SetFont('Arial','',14);
 $pdf->Cell(0,5,'Sharada Netralaya',0,1,'R');
 $pdf->SetFont('Arial','',12);
