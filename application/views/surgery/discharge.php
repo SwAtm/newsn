@@ -6,6 +6,7 @@ $pdf->setLeftMargin(12);
 $date=date('d-m-Y',strtotime($dos));
 $pdf->AddFont('brh_deve','','brh_deve.ttf','true');
 $pdf->AddFont('brhknd','','brhknd.ttf','true');
+$dos=$date;
 foreach ($patients as $p):
 $pdf->AddPage();
 //page4
@@ -53,7 +54,7 @@ $pdf->MultiCell(128,5,"Address: ".$p['add1'].", ". $p['add2'].", ".$p['taluq']."
 $pdf->ln(2);
 $pdf->SetX($xd);
 $pdf->Cell(64,5,"Age/Sex: ".$p['dob']."/".$p['sex'],0,0);
-$pdf->cell(64,5,"DOS: ".$date,0,1,'R');
+$pdf->cell(64,5,"DOS: ".$dos,0,1,'R');
 $pdf->ln(2);
 $pdf->SetX($xd);
 $pdf->Cell(128,5,"Surgery Performed: SICS ".$p['eye'],0,1);
@@ -116,7 +117,7 @@ $pdf->Rect(12,18,20,32);
 $pdf->Rect(32,18,108,32);
 
 $pdf->SetFont('Arial','',10);
-$dosf=date_create($date);
+$dosf=date_create($dos);
 date_add($dosf, date_interval_create_from_date_string('1 day'));
 $date=date_format($dosf,"d-m-Y");
 
