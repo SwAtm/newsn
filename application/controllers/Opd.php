@@ -327,10 +327,10 @@ class Opd extends CI_Controller{
 				$id=$_POST['id'];
 				unset ($_POST['id']);
 				if ($this->opd_model->opd_update($_POST, $id)):
-					echo "Database updated";
-					echo "<a href=".site_url('home').">Go home</a href>";
+					redirect('opd/get_id_edit', 'refresh');
+
 				else:
-					echo "<a href=".site_url('home').">Go home</a href>";
+					echo "Could not update <a href=".site_url('home').">Go home</a href>";
 				endif;
 			endif;
 		
