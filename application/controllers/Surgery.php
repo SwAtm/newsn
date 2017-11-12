@@ -176,12 +176,14 @@ class Surgery extends CI_Controller{
 			$data['id']=$_POST['id'];
 			$data['dos']=date('Y-m-d', strtotime($data['dos']));
 			if ($this->surgery_model->update($data)):
-				$this->load->view('templates/header');
+				redirect('surgery/get_id_edit','refresh');
+				/*$this->load->view('templates/header');
 				$this->output->append_output("Record updated<br>");
 				$this->output->append_output("<a href=".site_url('home').">Go home</a>");
-				
+				*/
 			else:
 				echo "Coulnot update record<br>";
+				echo "<a href=".site_url('home').">Go home</a>";
 				//echo $this->db->_error_message();
 			endif;
 	
