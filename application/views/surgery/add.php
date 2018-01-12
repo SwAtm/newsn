@@ -10,7 +10,7 @@ $(document).ready(function() {
         $('input[id$=dt]').datepicker({
             dateFormat:"dd-mm-yy",
             onClose: function(dateText, inst) {
-                $("#k1").focus();
+                $("#ecg").focus();
             }
         });
     });
@@ -26,11 +26,12 @@ echo form_open('surgery/add/'.$id,'',array('id'=> $id));
 $sur=array(
 	//array('label'=>'DOS','name'=>'dos','maxlength'=>'10'),
 	//array('label'=>'K1','name'=>'k1','maxlength'=>'5'),
-	array('label'=>'K2','name'=>'k2','maxlength'=>'5'),
-	array('label'=>'AL','name'=>'al','maxlength'=>'5'),
-	array('label'=>'IOL','name'=>'iol','maxlength'=>'5'),
-	array('label'=>'ECG','name'=>'ecg','maxlength'=>'20'),
-	array('label'=>'BP','name'=>'bp','maxlength'=>'30'),
+	//no need of k1, k2, al, iol, bp during add
+	//array('label'=>'K2','name'=>'k2','maxlength'=>'5'),
+	//array('label'=>'AL','name'=>'al','maxlength'=>'5'),
+	//array('label'=>'IOL','name'=>'iol','maxlength'=>'5'),
+	//array('label'=>'ECG','name'=>'ecg','maxlength'=>'20'),
+	//array('label'=>'BP','name'=>'bp','maxlength'=>'30'),
 	array('label'=>'RBS','name'=>'rbs','maxlength'=>'30'),
 	array('label'=>'SAC','name'=>'sac','maxlength'=>'10'),
 	array('label'=>'IOP','name'=>'iop','maxlength'=>'10')
@@ -38,7 +39,7 @@ $sur=array(
 echo "<table border=1 align=center>";
 echo "<tr><td colspan=3 align=center>Patient's id/name: ".$opd['id']."/ ".$opd['name'].", ".$opd['add1']."</td></tr>";
 echo "<tr><td>DOS</td><td>".form_input(array('name'=>'dos','id'=>'dt'))."</td></tr>";
-echo "<tr><td>K1</td><td>".form_input(array('name'=>'k1','id'=>'k1'))."</td></tr>";
+echo "<tr><td>ECG</td><td>".form_input(array('name'=>'ecg','id'=>'ecg'))."</td></tr>";
 
 foreach ($sur as $sur1):
 	echo "<tr><td>".$sur1['label']."</td><td colspan='2' >".form_input(array ('name'=>$sur1['name'],'maxlength'=>$sur1['maxlength']))."</td></tr>";
