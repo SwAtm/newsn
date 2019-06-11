@@ -60,11 +60,11 @@ $pdf->ln(5);
 $pdf->Cell(0,10,"History and Findings",0,1,'C');
 $pdf->ln(5);
 	
-$pdf->Cell(0,5,"History of DM: ".$p['dm'],0,1,'L');
-
+$pdf->Cell(90,5,"History of DM: ".$p['dm'],0,0,'L');
+$pdf->Cell(90,5,"Rx: ",0,1,'L');
 $pdf->ln(5);
-$pdf->Cell(0,5,"History of HTN: ".$p['htn'],0,1,'L');
-
+$pdf->Cell(90,5,"History of HTN: ".$p['htn'],0,0,'L');
+$pdf->Cell(90,5,"Rx: ",0,1,'L');
 $pdf->ln(5);
 $pdf->Cell(45,20,"RBS: ".$p['rbs'],1,0,'L');
 $pdf->Cell(45,20,"ECG: ".$p['ecg'],1,0,'L');
@@ -77,9 +77,13 @@ $pdf->Cell(90,10,"RS:",1,1,'L');
 $pdf->ln(5);
 $pdf->MultiCell(180,5,"Other: ".$p['remark'],0,'L');
 $pdf->ln(5);
-
-$pdf->ln(5);
-$pdf->Cell(0,5,"Advice:",0,1,'L');
+$pdf->Cell(90,5,"Temparature: ",0,0,'L');
+$pdf->Cell(90,5,"Cough: ",0,1,'L');
+$pdf->ln(3);
+$pdf->Cell(90,5,"Allergic to: ",0,0,'L');
+$pdf->Cell(90,5,"Wound: ",0,1,'L');
+$pdf->ln(3);
+$pdf->Cell(0,5,"Other Findings:",0,1,'L');
 
 $pdf->AddPage();
 $pdf->SetRightMargin(20);
@@ -90,7 +94,7 @@ if ($p['eye']=="LE"||$p['eye']=="LE Under GVP"):
 else:
 	$eye="Right Eye";
 endif;
-$pdf->MultiCell(0,5,"I hereby agree whole heartedly to have CATARACT SURGERY performed on $eye and / or to receive anesthesia in Shri Sarada Netralaya for the under mentioned patient. The procedure and risks have been explained to me in my language. If anything untoward happens during the course of anesthesia and / or operation, I also admit that neither the hospital administration nor the doctors and other employees of the hospital will be held responsible for the same.",0,'J');
+$pdf->MultiCell(0,5,"I hereby agree whole heartedly to have CATARACT SURGERY performed on $eye and / or to receive anesthesia in Sharada Netralaya for the under mentioned patient. The procedure and risks have been explained to me in my language. If anything untoward happens during the course of anesthesia and / or operation, I also admit that neither the hospital administration nor the doctors and other employees of the hospital will be held responsible for the same.",0,'J');
 $pdf->Cell(0,10,"Name of the patient: ".$p['name'],0,1,'L');
 $pdf->Cell(0,10,"Name of person signing the form and relation to patient ",0,1,'L');
 $pdf->ln(15);
