@@ -340,13 +340,13 @@ class Surgery extends CI_Controller{
 						$data[$data1]['dm']="No";
 						else:
 						$dmym=$this->opd_model->finddiff($value['dm']);
-						$data[$data1]['dm']="On Rx since ".$dmym[0]." Years and ".$dmym[1]." months";
+						$data[$data1]['dm']="On Rx since ".$dmym[0]." Y and ".$dmym[1]." M";
 						endif;
 						if ($value['htn']=='0000-00-00' or $value['htn']==null):
 						$data[$data1]['htn']="No";
 						else:
 						$htnym=$this->opd_model->finddiff($value['htn']);
-						$data[$data1]['htn']="On Rx since ".$htnym[0]." Years and ".$htnym[1]." months";
+						$data[$data1]['htn']="On Rx since ".$htnym[0]." Y and ".$htnym[1]." M";
 						endif;
 						$data[$data1]['dos']=date('d-m-Y',strtotime($dos));
 						$dobym=$this->opd_model->finddiff($value['dob']);
