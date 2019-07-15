@@ -76,8 +76,8 @@ $pdf->Cell(90,10,"CVS:",1,0,'L');
 $pdf->Cell(90,10,"RS:",1,1,'L');
 $pdf->ln(5);
 
-$pdf->Cell(60,5,"Allergic to: ",0,0,'L');
-$pdf->Cell(60,5,"Wound: ",0,0,'L');
+$pdf->Cell(60,5,"Any Allergies: ",0,0,'L');
+$pdf->Cell(60,5,"Any wound on body: ",0,0,'L');
 $pdf->Cell(60,5,"h/o Epilepsy: ",0,1,'L');
 $pdf->ln(5);
 $pdf->Cell(60,5,"Ear Discharge: ",0,0,'L');
@@ -87,6 +87,8 @@ $pdf->ln(5);
 $pdf->Cell(60,5,"Temparature: ",0,0,'L');
 $pdf->Cell(60,5,"Cough: ",0,0,'L');
 $pdf->Cell(60,5,"Pedal Oedema: ",0,1,'L');
+$pdf->ln(5);
+$pdf->Cell(60,5,"Thyroid Enlargement: ",0,1,'L');
 $pdf->ln(5);
 $pdf->MultiCell(180,5,"Other: ".$p['remark'],0,'L');
 
