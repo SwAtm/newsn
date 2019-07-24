@@ -88,7 +88,10 @@ $pdf->Cell(60,5,"Temparature: ",0,0,'L');
 $pdf->Cell(60,5,"Cough: ",0,0,'L');
 $pdf->Cell(60,5,"Pedal Oedema: ",0,1,'L');
 $pdf->ln(5);
-$pdf->Cell(60,5,"Thyroid Enlargement: ",0,1,'L');
+$pdf->Cell(60,5,"Thyroid Enlargement: ",0,0,'L');
+$pdf->Cell(60,5,"Loose Stools: ",0,0,'L');
+$pdf->Cell(60,5,"Pallor: ",0,1,'L');
+
 $pdf->ln(5);
 $pdf->MultiCell(180,5,"Other: ".$p['remark'],0,'L');
 
