@@ -12,7 +12,7 @@ $pdf->SetLeftMargin(20);
 $pdf->SetRightMargin(10);
 $pdf->SetFont('Arial','B',18);
 //$pdf->Image ($base.'/logo.jpg', '10', '10', '', '15');
-$pdf->Image (IMGPATH.'logo.jpg', '10', '10', '', '15');
+$pdf->Image (IMGPATH.'logo.jpg', '20', '10', '', '15');
 $pdf->Cell(50,5,'',0,0);
 $pdf->Cell(7,7,$p['language'],1,0);
 $pdf->SetFont('Arial','',14);
