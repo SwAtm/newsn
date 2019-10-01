@@ -99,7 +99,7 @@ class Fitness extends CI_Controller{
 				if ($mdata1->name=='date'):
 					$post[$mdata1->name]=date('Y-m-d',strtotime($post[$mdata1->name]));
 				endif;
-				$data[$mdata1->name]=$post[$mdata1->name];
+				$data[$mdata1->name]=ucfirst(rtrim($post[$mdata1->name],",' '"));
 			endforeach;
 			if ("Add"==$todo):
 				if ($this->fitness_model->add($data)):
