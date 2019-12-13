@@ -18,9 +18,11 @@ foreach ($patient as $patients1):
 $pdf->Row($patients1);
 endforeach;
 $pdf->Cell(210,5,$pdf->PageNo(),0,0,'C');
-$filename=SAVEPATH."Pre Op Chart- ".$dos.".pdf";
+$filename=SAVEPATH."Pre Op Chart- ".$date.".pdf";
 $pdf->Output($filename);
-echo "Pre Op Chart printed at".SAVEPATH."<br>";
-echo "<a href=".site_url('home').">Go Home</a>";
+
+
+//echo "Pre Op Chart printed at".SAVEPATH."<br>";
+//echo "<a href=".site_url('home').">Go Home</a>";
 ?>
 

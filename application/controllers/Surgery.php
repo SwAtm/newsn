@@ -33,9 +33,9 @@ class Surgery extends CI_Controller{
 			
 			$id=$this->input->post('id');
 				if ($this->surgery_model->get_details($id)):
-					Die ("<a href=".site_url('home').">Record already in Surgery Table, Pl use edit option</a>");
+					Die ($this->load->view('templates/header','',TRUE)."<a href=".site_url('home').">Record already in Surgery Table, Pl use edit option</a>");
 				elseif (!$row=$this->fitness_model->get_details_id($id)):
-					Die ("Record not in Fitness Table, <a href=".site_url('fitness/get_id')."> Pl add and come back</a>");
+					Die ($this->load->view('templates/header','',TRUE)."Record not in Fitness Table, <a href=".site_url('fitness/get_id')."> Pl add and come back</a>");
 				else:
 					redirect('surgery/add/'.$id);
 				endif;
@@ -49,7 +49,7 @@ class Surgery extends CI_Controller{
 		
 		if (!isset($_POST['submit'])):
 			if (!$opd=$this->opd_model->get_details_opd($id) OR !$fitness=$this->fitness_model->get_details_id($id)):
-			die ("Data not fetched");
+			die ($this->load->view('templates/header','',TRUE)."<a href=".site_url('home').">Data not fetched, GO Home</a>");
 			endif;
 			
 			if ($opd['remark']!==""):
@@ -131,7 +131,7 @@ class Surgery extends CI_Controller{
 				//check if ipno already allotted.
 				$surgery=$this->surgery_model->get_details($id);
 					if ($surgery['ipno']!==0 and $surgery['ipno']!==null):
-						die("IP No already allotted, <a href=".site_url('home').">Go Home</a>");
+						die($this->load->view('templates/header','',TRUE)."IP No already allotted, <a href=".site_url('home').">Go Home</a>");
 					endif;
 				$opd=$this->opd_model->get_details_opd($id);
 				
@@ -205,14 +205,15 @@ class Surgery extends CI_Controller{
 			//check if record exists in surgery table.
 				$id=$this->input->post('id');
 				if (!$surgery=$this->surgery_model->get_details($id)):
-					die("ID not found<br><a href=".site_url('home').">Go home</a>");
+					//$this->load->view('templates/header','',TRUE);
+					die($this->load->view('templates/header','',TRUE)."ID not found<br><a href=".site_url('home').">Go home</a>");
 				endif;
 
 
 				//check if ipno is already allotted
 				$surgery=$this->surgery_model->get_details($id);				
 				if($surgery['ipno']!==0 AND $surgery['ipno']!==null):
-					die("IP No already allotted<br><a href=".site_url('home').">Go home</a>");
+					die($this->load->view('templates/header','',TRUE)."IP No already allotted<br><a href=".site_url('home').">Go home</a>");
 				endif;
 				
 				
@@ -279,7 +280,7 @@ class Surgery extends CI_Controller{
 			else:
 				$dos=date('Y-m-d', strtotime($_POST['dos']));
 				if (!$this->surgery_model->get_details_date($dos)):
-					Die ("Nothing happend on this date. <a href=".site_url('home').">Go Home</a>");
+					Die ($this->load->view('templates/header','',TRUE)."Nothing happend on this date. <a href=".site_url('home').">Go Home</a>");
 				endif;
 				
 				
@@ -326,6 +327,9 @@ class Surgery extends CI_Controller{
 					$data['dos']=$dos;	
 					$data['hdr']=array('Ord No','Sl No','Name','Lng','eye','gvp','DM','HTN','Remark');
 					$this->load->view('surgery/preop',$data);
+					$this->load->view('templates/header');
+					$this->output->append_output("Pre Op Chart printed at ".SAVEPATH."<br>");
+					$this->output->append_output("<a href=".site_url('home').">Go Home</a>");
 					
 				elseif (isset($_POST['ipcards'])):
 					$data=$this->surgery_model->get_details_opd_sur_ipcard($dos);
@@ -355,10 +359,14 @@ class Surgery extends CI_Controller{
 					$data['patients']=$data;	
 					$data['dos']=date('d-m-Y',strtotime($dos));
 					$this->load->view('surgery/ipcards',$data);
+					$this->load->view('templates/header');
+					$this->output->append_output("IP Cards printed at ".SAVEPATH."<br>");
+					$this->output->append_output("<a href=".site_url('home').">Go Home</a>");
 				else:
 					$data['dos']=$dos;
 					$data['postop1']=date('d-m-Y',strtotime($dos."+8 days"));
 					$data['postop2']=date('d-m-Y',strtotime($dos."+43 days"));
+					$this->load->view('templates/header');
 					$this->load->view('surgery/confirmdates',$data);
 				
 					//$this->load->view('surgery/discharge',$data);
@@ -380,7 +388,7 @@ class Surgery extends CI_Controller{
 		$data['dos']=$dos;
 		$data['discharge']=$_POST;
 		if (!$patients=$this->surgery_model->get_details_opd_sur_discharge($dos)):
-			Die ("No surgeries performed. <a href=".site_url('home').">Go Home</a>");
+			Die ($this->load->view('templates/header','',TRUE)."No surgeries performed. <a href=".site_url('home').">Go Home</a>");
 		endif;
 		
 		foreach ($patients as $data1=>$value):
@@ -428,6 +436,12 @@ class Surgery extends CI_Controller{
 		//print_r($csv);
 		$fname="surgery_".date('d-m-Y',strtotime($dos));
 		$this->surgery_model->write_csv($csv, $fname);
+		
+		$this->load->view('templates/header');
+		$this->output->append_output("IP Register And Discharge sheets printed at ".SAVEPATH."<br>");
+		$this->output->append_output("<a href=".site_url('home').">Go Home</a>");
+	
+
 		}
 
 }

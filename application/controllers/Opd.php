@@ -45,6 +45,7 @@ class Opd extends CI_Controller{
 		
 		$this->load->view('templates/header');
 		$this->load->view('opd/add', $data);
+		$this->load->view('templates/footer');
 		
 		
 		//validated
@@ -182,7 +183,8 @@ class Opd extends CI_Controller{
 			if ($this->opd_model->get_list($name)):
 			$data['patients']=$this->opd_model->get_list($name);
 			else:
-			die ("Patient not found <a href=".site_url('home').">Go home</a href>");
+			
+			die ($this->load->view('templates/header','',TRUE). "Patient not found <a href=".site_url('home').">Go home</a href>");
 			endif;
 			$this->load->view('templates/header');
 			$this->load->view('opd/list', $data);
@@ -207,7 +209,7 @@ class Opd extends CI_Controller{
 		$this->load->view('templates/header');
 		$this->load->view('opd/details',$data);
 		else:
-		die ("Patient not found <a href=".site_url('home').">Go home</a href>");
+		die ($this->load->view('templates/header','',TRUE). "Patient not found <a href=".site_url('home').">Go home</a href>");
 		endif;
 	}
 	
@@ -225,8 +227,13 @@ class Opd extends CI_Controller{
 			//check if id exists
 			$id=$this->input->post('id');
 			if (!$this->opd_model->get_details_opd($id)):
-				echo "ID not found"."<br>";
-				echo "<a href=".site_url('opd/get_id_edit').">Try Again</a href>";
+				$this->load->view('templates/header');
+				$this->output->append_output("ID Not Found<br>");
+				$this->output->append_output("<a href=".site_url('opd/get_id_edit').">Try Again</a href>");
+				
+				
+				//echo "ID not found"."<br>";
+				//echo "<a href=".site_url('opd/get_id_edit').">Try Again</a href>";
 			else:
 				//post false so that edit gets it as unsubmitted form
 				//unset($_POST);
@@ -293,7 +300,7 @@ class Opd extends CI_Controller{
 			$data['remark']=array('label'=>'remark', 'name'=>'remark', 'max_len'=>'50', 'value'=>$row['remark']);
 			$this->load->view('templates/header');
 			$this->load->view('opd/edit', $data);
-				
+			$this->load->view('templates/footer');	
 			else:
 			
 			
@@ -339,8 +346,8 @@ class Opd extends CI_Controller{
 	public function get_date_view(){
 			$this->load->view('templates/header');
 			$this->load->view('opd/get_date_view');	
-			echo "<a href=".site_url('home').">Go home</a href>";
-	
+			//echo "<a href=".site_url('home').">Go home</a href>";
+			$this->load->view('templates/footer');
 }
 	public function view_date($date=null){
 		//set vaidation rule
@@ -374,7 +381,9 @@ class Opd extends CI_Controller{
 			endforeach;
 			$data['patients']=$patients;
 			$data['hdr']=array('Id', 'OPD No', 'Name', 'Address','Age', 'Sex');
+			$this->load->view('templates/header');
 			$this->load->view('opd/opd_date', $data);
+			$this->load->view('templates/footer');
 		endif;
 	endif;
 }
@@ -395,7 +404,9 @@ class Opd extends CI_Controller{
 		$data['hdr']=array('Id', 'OPD No', 'Name', 'Address','Age', 'Sex');
 		$data['date']=$date;
 		$this->load->view('opd/opd_date_print', $data);
-	
+		$this->load->view('templates/header');
+		$this->output->append_output("OPD Registered printed at ".SAVEPATH."<br>");
+		$this->output->append_output("<a href=".site_url('home').">Go home</a>");
 	}
 
 		public function get_id_print(){
@@ -412,8 +423,11 @@ class Opd extends CI_Controller{
 			//check if id exists
 			$id=$this->input->post('id');
 			if (!$this->opd_model->get_details_opd($id)):
-				echo "ID not found"."<br>";
-				echo "<a href=".site_url('home').">Go home</a href>";
+				$this->load->view('templates/header');
+				$this->output->append_output("ID not found<br>");
+				$this->output->append_output("<a href=".site_url('home').">Go home</a>");
+				//echo "ID not found"."<br>";
+				//echo "<a href=".site_url('home').">Go home</a href>";
 			else:
 				$redirect="red";
 				$this->print_opd($id,$redirect);

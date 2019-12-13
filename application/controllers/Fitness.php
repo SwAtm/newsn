@@ -28,13 +28,21 @@ class Fitness extends CI_Controller{
 		$id=$this->input->post('id');
 		//check if id exists
 			if (!$data['patients']=$this->opd_model->get_details_opd($id)):
-				die ("Pl check ID. <br><a href=get_id>Continue</a>");
+				die($this->load->view('templates/header','',TRUE)."Pl check ID. <br><a href=get_id>Continue</a>");
 			endif;
 		//check if already added to surgery table and accordigly steer.
 			if ($this->surgery_model->get_details($id)):
-				$display=$this->fitness_model->get_details_id($id);
-				echo '<pre>'; print_r($display); echo '</pre>';
-				die ("Patient already added to surgery table. Cannot add/edit<br><a href=get_id>Continue</a>");
+				$data['display']=$this->fitness_model->get_details_id($id);
+				//die($this->load->view('templates/header','',TRUE).'<pre>'. print_r($display).'</pre>'."Patient already added to surgery table. Cannot add/edit<br><a href=get_id>Continue</a>");
+				//print_r($display);
+				$this->load->view('templates/header');
+				$this->load->view('fitness/in_surgery',$data);
+				//echo '<pre>'; print_r($display); echo '</pre>';
+				//die("Patient already added to surgery table. Cannot add/edit<br><a href=get_id>Continue</a>");
+				$this->load->view('templates/footer');
+				//exit;
+				return;
+				//die();
 			endif;
 		
 				
@@ -141,6 +149,7 @@ class Fitness extends CI_Controller{
 			if (!$data['fitness']):
 				echo "No data fetched";
 				$this->get_date();
+				
 			else:
 			$this->load->view('templates/header');
 			$this->load->view('fitness/list_date',$data);

@@ -1,5 +1,5 @@
 <?php
-Print_r($_POST);
+//Print_r($_POST);
 echo validation_errors();
 $this->table->set_template(array('table_open'=>'<table border=1 align=center width=50%>'));
 $this->table->set_heading(array('data'=>'Enter ID to edit', 'align'=>'center'));

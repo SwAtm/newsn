@@ -87,7 +87,7 @@ $pdf->Cell(210,5,$pdf->PageNo(),0,1,'C');
 */
 $filename=SAVEPATH."OPDreg_".$date.".pdf";
 $pdf->Output($filename);
-echo "OPD Registered printed at".SAVEPATH."<br>";
-echo "<a href=".site_url('home').">Go Home</a>";
+//echo "OPD Registered printed at".SAVEPATH."<br>";
+//echo "<a href=".site_url('home').">Go Home</a>";
 
 ?>

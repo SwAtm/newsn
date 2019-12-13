@@ -7,7 +7,7 @@ $pdf->SetAutoPageBreak('auto',1);
 $pdf->setLeftMargin(14);
 $pdf->AddPage();
 $pdf->SetFont('Arial','B',14);
-$pdf->setXY(40,7);
+$pdf->setXY(65,7);
 $pdf->cell(10,5,$language,1,1,'C');
 $pdf->SetFont('Arial','',10);
 $pdf->setXY(14,33);

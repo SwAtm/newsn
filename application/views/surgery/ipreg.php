@@ -64,9 +64,8 @@ $pdf->cell(70,30,"",1,1,'L');
 endforeach;
 $pdf->ln(5);
 $pdf->Cell(210,5,$pdf->PageNo(),0,1,'C');	
-$filename=SAVEPATH."IP Reg_".$dos.".pdf";
+$filename=SAVEPATH."IP Reg_".date('d-m-Y',strtotime($dos)).".pdf";
 $pdf->Output($filename);
-echo "IP Register And Discharge sheets printed at".SAVEPATH."<br>";
-echo "<a href=".site_url('home').">Go Home</a>";
+
 
 ?>

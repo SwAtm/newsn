@@ -74,7 +74,7 @@ class Misc extends CI_Controller{
 				$patients=$this->surgery_model->get_details_opd_sur_dbcs($sdate,$edate);
 				$c=0;
 				if (!$patients):
-				die("No surgeries performed during this period");
+				die($this->load->view('templates/header','',TRUE)."No surgeries performed during this period "."<a href=".site_url('home').">Go Home</a>");
 				endif;
 				
 				foreach ($patients as $p):
@@ -104,7 +104,7 @@ class Misc extends CI_Controller{
 		
 			$this->surgery_model->db_backup();
 			$this->load->view('templates/header');
-			$this->output->append_output("Backup taken at".SAVEPATH."<a href=".site_url('home').">Home</a>");
+			$this->output->append_output("Backup taken at ".SAVEPATH."<a href=".site_url('home')."> Home</a>");
 		
 		}
 }

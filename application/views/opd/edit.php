@@ -1,6 +1,6 @@
 <?php
 //called by opd/edit
-echo "<a href=".site_url('home').">Go home</a href>";
+//echo "<a href=".site_url('home').">Go home</a href>";
 
 	
 echo validation_errors();
@@ -29,8 +29,8 @@ $cellremark=array('data'=>form_input(array('name'=>$remark['name'], 'maxlength'=
 $this->table->add_row(form_label($remark['label']),$cellremark) ; 
 $cellsumbit=array('data'=>form_submit('submit','Submit'), 'colspan'=>'5', 'align'=>'center');
 $this->table->add_row($cellsumbit);
-$cellhome=array('data'=>"<a href=".site_url('home').">GO back</a>", 'colspan'=>'5', 'align'=>'center');
-$this->table->add_row($cellhome);
+//$cellhome=array('data'=>"<a href=".site_url('home').">GO back</a>", 'colspan'=>'5', 'align'=>'center');
+//$this->table->add_row($cellhome);
 echo $this->table->generate();
 echo form_close();
 ?>

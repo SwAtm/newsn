@@ -133,6 +133,5 @@ endforeach;
 
 $filename=SAVEPATH."IP Cards_".$dos.".pdf";
 $pdf->Output($filename);
-echo "IP Cards printed at".SAVEPATH."<br>";
-echo "<a href=".site_url('home').">Go Home</a>";?>
+?>
 
