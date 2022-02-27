@@ -2,6 +2,7 @@
 tfpdf();
 $base=base_url('application/images');
 $pdf=new PDF_MC_Table('L', 'mm', array(297,210));
+$pdf->SetAutoPageBreak(false);
 $pdf->setLeftMargin(12);
 $date=date('d-m-Y',strtotime($dos));
 $pdf->AddFont('brh_deve','','brh_deve.ttf','true');
@@ -30,6 +31,19 @@ $pdf->MultiCell(59,8,"9. MAzÀÄ ªÁgÀzÀ £ÀAvÀgÀ vÀ¯ÉUÉ ¸Àé®à Ju
 14. ¤ªÀÄUÉ PÉªÀÄÄä, ²ÃvÀ CxÀªÁ ªÀÄ®§zsÀÝvÉ EzÀÝ°è PÀÆqÀ¯ÉÃ aQvÉì ¥ÀqÉ¬Äj.
 15. vÀ¯ÉAiÀÄ ªÉÄÃ¯É vÀPÀët dUÀÄÎ«PÉ GAmÁUÀ§ºÀÄzÁzÀ ZÀlÄªÀnPÉ, CAzÀgÉ vÀ¯ÉAiÀÄ ªÀÄ¸Áeï, ¥ÀæªÁ¸À ªÀÄÄAvÁzÀªÀ£ÀÄß ªÀiÁqÀ¨ÉÃrj.
 16. PÀtÄÚUÀ¼À°è £ÉÆÃªÀÅAiÀiÁzÀgÉ CxÀªÁ PÁtÂ¸ÀÄªÀÅzÀÄ(zÀÈ¶Ö) PàrªÉÄAiÀiÁUÀÄwÛzÀÝgÉ, PÀÆqÀ¯ÉÃ ¤ªÀÄä qÁPÀÖgÀgÀ£ÀÄß ¸ÀA¥ÀQð¹j.",0,'J');
+$y=$pdf->GetY();
+//$pdf->ln(10);
+$pdf->SetXY(84,$y+10);
+$pdf->SetFont('Arial','',12);
+$pdf->Cell(30,6,"K1: ".$p['k1'],1,0,'C');
+$pdf->Cell(30,6,"K2: ".$p['k2'],1,1,'C');
+$y=$pdf->GetY();
+$pdf->SetXY(84,$y);
+$pdf->Cell(30,6,"AL: ".$p['al'],1,0,'C');
+$pdf->Cell(30,6,"IOL: ".$p['iol'],1,1,'C');
+$y=$pdf->GetY();
+$pdf->SetXY(84,$y);
+$pdf->Cell(60,8,"BM: ",1,0,'L');
 //page1
 $xd=158;
 $pdf->SetXY(158,10);

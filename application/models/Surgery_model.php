@@ -121,7 +121,7 @@ class Surgery_model extends CI_Model{
 	}
 
 	public function get_details_opd_sur_discharge($dos)
-	//called by surgery/get_date
+	//called by surgery/get_date, surgery/print_discharge
 	{
 	$query=$this->db->select('opd.name, opd.add1, opd.add2, opd.taluq, opd.district, opd.phone, opd.dm, opd.htn, opd.dob, opd.sex, opd.language, surgery.id, surgery.ipno, surgery.gvp, surgery.eye, surgery.k1, surgery.k2, surgery.al, surgery.iol, surgery.surgeon ');
 	$query=$this->db->from('surgery');
