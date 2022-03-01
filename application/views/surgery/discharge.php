@@ -33,17 +33,17 @@ $pdf->MultiCell(59,8,"9. MAzÀÄ ªÁgÀzÀ £ÀAvÀgÀ vÀ¯ÉUÉ ¸Àé®à Ju
 16. PÀtÄÚUÀ¼À°è £ÉÆÃªÀÅAiÀiÁzÀgÉ CxÀªÁ PÁtÂ¸ÀÄªÀÅzÀÄ(zÀÈ¶Ö) PàrªÉÄAiÀiÁUÀÄwÛzÀÝgÉ, PÀÆqÀ¯ÉÃ ¤ªÀÄä qÁPÀÖgÀgÀ£ÀÄß ¸ÀA¥ÀQð¹j.",0,'J');
 $y=$pdf->GetY();
 //$pdf->ln(10);
-$pdf->SetXY(84,$y+10);
+$pdf->SetXY(79,$y+10);
 $pdf->SetFont('Arial','',12);
 $pdf->Cell(30,6,"K1: ".$p['k1'],1,0,'C');
-$pdf->Cell(30,6,"K2: ".$p['k2'],1,1,'C');
+$pdf->Cell(29,6,"K2: ".$p['k2'],1,1,'C');
 $y=$pdf->GetY();
-$pdf->SetXY(84,$y);
+$pdf->SetXY(79,$y);
 $pdf->Cell(30,6,"AL: ".$p['al'],1,0,'C');
-$pdf->Cell(30,6,"IOL: ".$p['iol'],1,1,'C');
+$pdf->Cell(29,6,"IOL: ".$p['iol'],1,1,'C');
 $y=$pdf->GetY();
-$pdf->SetXY(84,$y);
-$pdf->Cell(60,8,"BM: ",1,0,'L');
+$pdf->SetXY(79,$y);
+$pdf->Cell(59,8,"BM: ",1,0,'L');
 //page1
 $xd=158;
 $pdf->SetXY(158,10);
