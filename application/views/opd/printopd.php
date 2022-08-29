@@ -46,7 +46,7 @@ $pdf->ln();
 $pdf->ln();
 $filename=SAVEPATH."opd_".$id.".pdf";
 $pdf->Output($filename);
-$cmd=PRINTCMD."-print-to". PRINTER $filename";
+$cmd=PRINTCMD."-print-to". PRINTER. $filename;
 system($cmd);
 ?>
 
