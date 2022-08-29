@@ -87,9 +87,12 @@ defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest auto
 //custom variables
 define('SAVEPATH','/d/EyeCamp/');
 define('IMGPATH','/var/www/html/newsn/application/images/');
-define('PRINTER',"HP");
-//define('PRINTER',"Brother");
-//define('PRINTER',"Canon");
-define('PRINTCMD',"c:\\progra~1\\sumatr~1\\sumatr~1.exe");
+//define('SAVEPATH','d:\\sharada\\');
+//define('IMGPATH','d:\\xampp\\htdocs\\newsn\\application\\images\\');
+//a space after name of the printer
+define('PRINTER','HP ');
+//define('PRINTER','Brother ');
+//define('PRINTER','Canon ');
+define('PRINTCMD','c:\\progra~1\\sumatr~1\\sumatr~1.exe -print-to ');
 
 ?>
