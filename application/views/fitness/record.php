@@ -1,5 +1,7 @@
+
 <?php
 //called by fitness/get_details_id, fitness/add_update
+
 echo validation_errors();
 //var_dump($fitness);
 $template=array('table_open'=>'<table border=1 align=center width=50%>');
@@ -18,7 +20,7 @@ echo form_open('fitness/add_update','',array('id'=>$patients['id'], 'todo'=>$tod
 			$this->table->add_row(form_label(ucfirst($mdata1->name)));
 		endif;	
 	
-	$this->table->add_row(form_input(array('name'=>$mdata1->name, 'maxlength'=>$mdata1->max_length, 'size'=>$mdata1->max_length, 'value'=>$fitness[$mdata1->name])));
+	$this->table->add_row(form_input(array('name'=>$mdata1->name, 'maxlength'=>$mdata1->max_length, 'size'=>$mdata1->max_length, 'value'=>$fitness[$mdata1->name], 'id'=>$mdata1->name)));
 	endforeach;
 
 $this->table->add_row(form_submit('submit','Submit'));
@@ -26,3 +28,9 @@ $this->table->add_row("<a href=get_id>GO back</a>");
 echo $this->table->generate();
 echo form_close();
 ?>
+<script>
+	window.onload = function(){
+	document.querySelector('#chest_pain').focus();
+	}
+</script>
+

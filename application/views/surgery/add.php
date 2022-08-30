@@ -7,13 +7,16 @@
 
 <script type="text/javascript">
 $(document).ready(function() {
-        $('input[id$=dt]').datepicker({
+            $('input[id$=dt]').datepicker({
             dateFormat:"dd-mm-yy",
             onClose: function(dateText, inst) {
                 $("#ecg").focus();
             }
         });
+        $("#dt").focus();
+        
     });
+    
 </script>
 </head>
 <?php
