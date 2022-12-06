@@ -393,6 +393,7 @@ class Opd extends CI_Controller{
 	{
 		$date=$this->uri->segment(3);
 		$patients=$this->opd_model->get_details_date($date);
+		$patientsdm=$patients;
 		foreach ($patients as $patients1=>$pdata):
 				$patients[$patients1]['address']=$pdata['add1'].", ".$pdata['add2'].", ".$pdata['taluq'].", ".$pdata['district'].", ".$pdata['phone'];
 				//array_splice($patients[$patients1],3,0,$patients[$patients1]['address']);
@@ -400,8 +401,32 @@ class Opd extends CI_Controller{
 				$dobym=$this->opd_model->finddiff($pdata['dob']);
 				$patients[$patients1]['dob']=$dobym[0];
 		endforeach;
+		
+		foreach ($patientsdm as $patients1=>$pdata):
+				$patientsdm[$patients1]['name']=$pdata['name'].", ".$pdata['add1'].", ".$pdata['add2'].", ".$pdata['taluq'].", ".$pdata['district'].", ".$pdata['phone'];
+				//array_splice($patients[$patients1],3,0,$patients[$patients1]['address']);
+				unset ($patientsdm[$patients1]['add1'], $patientsdm[$patients1]['add2'], $patientsdm[$patients1]['taluq'],$patientsdm[$patients1]['phone'],$patientsdm[$patients1]['district'],$patientsdm[$patients1]['date'],$patientsdm[$patients1]['remark'],$patientsdm[$patients1]['language'], $patientsdm[$patients1]['advice'], $patientsdm[$patients1]['htn']);
+				$dobym=$this->opd_model->finddiff($pdata['dob']);
+				$patientsdm[$patients1]['dob']=$dobym[0];
+				
+				if ("0000-00-00"==$patientsdm[$patients1]['dm']):
+				$patientsdm[$patients1]['dm1']="No History";
+				else:
+				$dmym=$this->opd_model->finddiff($patientsdm[$patients1]['dm']);
+				$patientsdm[$patients1]['dm1']="On Rx since ".$dmym[0]." Y ".$dmym[1]." m";
+				endif;
+				unset ($patientsdm[$patients1]['dm']);
+				$patientsdm[$patients1]['rbs']='';
+				
+			
+		endforeach;
+		
+		
+		
 		$data['patients']=$patients;
+		$data['patientsdm']=$patientsdm;
 		$data['hdr']=array('Id', 'OPD No', 'Name', 'Address','Age', 'Sex');
+		$data['hdrdm']=array('Id', 'OPD No', 'NameAdd', 'Age', 'Sex', 'HO_DM');
 		$data['date']=$date;
 		$this->load->view('opd/opd_date_print', $data);
 		$this->load->view('templates/header');

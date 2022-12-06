@@ -46,6 +46,35 @@ $pdf->Row($patients1);
 endforeach;
 $pdf->Cell(210,5,$pdf->PageNo(),0,0,'C');
 
+//Report for DM
+$pdf->AddPage();
+$pdf->SetFont('Arial','B',10);
+$pdf->Image (IMGPATH.'logo.jpg', '10', '10', '', '15');
+$pdf->Cell(0,5,'Sharada Netralaya',0,1,'R');
+$pdf->Cell(0,5,'Ramakrishna Mission Ashrama',0,1,'R');
+$pdf->Cell(0,5,'Fort, Belgaum 590016. Ph 2430789/ 2432789',0,1,'R');
+$pdf->Cell(0,0,'',1,1,'R');
+$pdf->Cell(0,5,'OPD Register for - '.$date,1,1,'C');
+$pdf->SetFont('Arial','',10);
+$pdf->Cell(16,10,'ID',1,0,'L');
+$pdf->Cell(16,10,'OPD NO',1,0,'C');
+$pdf->Cell(60,10,'NameAdd',1,0,'C');
+$pdf->Cell(8,10,'Age',1,0,'C');
+$pdf->Cell(8,10,'Sex',1,0,'C');
+$pdf->Cell(40,10,'HO_DM',1,0,'C');
+$pdf->Cell(40,10,'RBS mg/dl',1,1,'C');
+
+$pdf->SetWidths(array(16,16,60,8,8,40,40));
+$pdf->SetHdr(array('Id', 'OPD No', 'NameAdd', 'Age', 'Sex', 'HO_DM', 'RBS mg/dl'));
+unset ($patient);
+foreach ($patientsdm as $patients1):
+$patient[]=array_values($patients1);
+endforeach;
+foreach ($patient as $patients1):
+$pdf->Row($patients1);
+endforeach;
+$pdf->Cell(210,5,$pdf->PageNo(),0,0,'C');
+
 /*$y=$pdf->getY();
 foreach ($patients as $k=>$v):
 $pdf->setXY(94,$y);
