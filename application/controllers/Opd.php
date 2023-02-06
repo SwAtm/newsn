@@ -9,6 +9,7 @@ class Opd extends CI_Controller{
 		$this->load->library('form_validation');
 		$this->load->library('table');
 		$this->load->helper('pdf_helper');
+		$this->load->model('Taluq_model');
 		//$this->output->enable_profiler(TRUE);
 
 	}
@@ -25,11 +26,18 @@ class Opd extends CI_Controller{
 		
 		//new form or failed validation
 	if ($this->form_validation->run()==false):
+		$taluq=$this->Taluq_model->getall();
+		$option=array();
+		$option=array(''=>'Select');
+		foreach ($taluq as $t=>$v):
+		//$option[]=array($v['name']=>$v['name']);
+		$option[$v['name']]=$v['name'];
+		endforeach;
 		$data['patients']=array(
 						array('label'=>'name', 'name'=>'name','max_len'=>'30'),
 						array('label'=>'address1', 'name'=>'add1','max_len'=>'30'),
 						array('label'=>'address2', 'name'=>'add2','max_len'=>'30'),
-						array('label'=>'taluq', 'name'=>'taluq','max_len'=>'30'),
+						array('label'=>'taluq', 'name'=>'taluq','options'=>$option),
 						array('label'=>'district', 'name'=>'district','max_len'=>'30'),
 						array('label'=>'phone', 'name'=>'phone','max_len'=>'15'),
 						array('label'=>'age', 'name'=>'dob','max_len'=>'2'),
@@ -256,7 +264,13 @@ class Opd extends CI_Controller{
 				if (!$row=$this->opd_model->get_details_opd($id)):
 				die ('Query Failed');
 				endif;
-				
+				$taluq=$this->Taluq_model->getall();
+				$option=array();
+				$option=array(''=>'Select');
+				foreach ($taluq as $t=>$v):
+				//$option[]=array($v['name']=>$v['name']);
+				$option[$v['name']]=$v['name'];
+				endforeach;	
 				//$row=$this->opd_model->get_details_opd($id);
 			//print_r($row);
 			$data['id']=$id;
@@ -286,7 +300,7 @@ class Opd extends CI_Controller{
 					array('label'=>'name', 'name'=>'name','max_len'=>'30', 'value'=>$row['name']),
 					array('label'=>'address1', 'name'=>'add1','max_len'=>'30', 'value'=>$row['add1']),
 					array('label'=>'address2', 'name'=>'add2','max_len'=>'30', 'value'=>$row['add2']),
-					array('label'=>'taluq', 'name'=>'taluq','max_len'=>'30', 'value'=>$row['taluq']),
+					array('label'=>'taluq', 'name'=>'taluq','max_len'=>'30', 'options'=>$option,'value'=>$row['taluq']),
 					array('label'=>'district', 'name'=>'district','max_len'=>'30', 'value'=>$row['district']),
 					array('label'=>'phone', 'name'=>'phone','max_len'=>'15', 'value'=>$row['phone']),
 					array('label'=>'age', 'name'=>'dob','max_len'=>'2', 'value'=>$row['age']),
