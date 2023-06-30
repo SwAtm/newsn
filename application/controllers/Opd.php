@@ -40,7 +40,7 @@ class Opd extends CI_Controller{
 						array('label'=>'taluq', 'name'=>'taluq','options'=>$option),
 						array('label'=>'district', 'name'=>'district','max_len'=>'30'),
 						array('label'=>'phone', 'name'=>'phone','max_len'=>'15'),
-						array('label'=>'age', 'name'=>'dob','max_len'=>'2'),
+						array('label'=>'YOB', 'name'=>'dob','max_len'=>'4'),
 						array('label'=>'sex', 'name'=>'sex', 'options'=>array (''=>'Select','M'=>'Male', 'F'=>'Female')),
 						array('label'=>'language', 'name'=>'language', 'options'=>array (''=>'Select','K'=>'Kannada', 'M'=>'Marathi','H'=>'Hindi'))
 
@@ -60,10 +60,10 @@ class Opd extends CI_Controller{
 	else:
 		
 		//get dob
-		$y=$_POST['dob'];
-		$yob=Date("Y")-$y;
-		$_POST['dob']=$yob."-01-01";
-		
+		//$y=$_POST['dob'];
+		//$yob=Date("Y")-$y;
+		//$_POST['dob']=$yob."-01-01";
+		$_POST['dob']=$_POST['dob']."-01-01";
 		//get dm and htn
 		if (''==$_POST['dmy']||'0'==$_POST['dmy'] AND ''==$_POST['dmm']||'0'==$_POST['dmm']):
 			$_POST['dm']='';
@@ -294,8 +294,8 @@ class Opd extends CI_Controller{
 			endif;
 				
 			$year=explode('-', $row['dob']);
-			$row['age']=Date('Y')-$year[0];
-				
+			//$row['age']=Date('Y')-$year[0];
+			$row['age']=$year[0];	
 			$data['patients']=array(
 					array('label'=>'name', 'name'=>'name','max_len'=>'30', 'value'=>$row['name']),
 					array('label'=>'address1', 'name'=>'add1','max_len'=>'30', 'value'=>$row['add1']),
@@ -303,7 +303,7 @@ class Opd extends CI_Controller{
 					array('label'=>'taluq', 'name'=>'taluq','max_len'=>'30', 'options'=>$option,'value'=>$row['taluq']),
 					array('label'=>'district', 'name'=>'district','max_len'=>'30', 'value'=>$row['district']),
 					array('label'=>'phone', 'name'=>'phone','max_len'=>'15', 'value'=>$row['phone']),
-					array('label'=>'age', 'name'=>'dob','max_len'=>'2', 'value'=>$row['age']),
+					array('label'=>'YOB', 'name'=>'dob','max_len'=>'4', 'value'=>$row['age']),
 					array('label'=>'sex', 'name'=>'sex', 'options'=>array (''=>'Select','M'=>'Male', 'F'=>'Female'), 'value'=>$row['sex']),
 					array('label'=>'language', 'name'=>'language', 'options'=>array (''=>'Select','K'=>'Kannada', 'M'=>'Marathi','H'=>'Hindi'), 'value'=>$row['language'])
 					);
@@ -320,9 +320,9 @@ class Opd extends CI_Controller{
 			
 			// valid
 				//get dob
-				$y=$_POST['dob'];
-				$yob=Date("Y")-$y;
-				$_POST['dob']=$yob."-01-01";
+				//$y=$_POST['dob'];
+				//$yob=Date("Y")-$y;
+				$_POST['dob']=$_POST['dob']."-01-01";
 		
 				//get dm and htn
 				if (''==$_POST['dmy']||'0'==$_POST['dmy'] AND ''==$_POST['dmm']||'0'==$_POST['dmm']):
