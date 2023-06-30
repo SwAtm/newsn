@@ -47,6 +47,7 @@ $pdf->ln();
 $filename=SAVEPATH."opd_".$id.".pdf";
 $pdf->Output($filename);
 //$cmd=PRINTCMD.PRINTER.$filename;
+//$cmd=PRINTCMD.$filename;
 //system($cmd);
 ?>
 

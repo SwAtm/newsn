@@ -93,6 +93,7 @@ define('IMGPATH','/var/www/html/newsn/application/images/');
 define('PRINTER','HP ');
 //define('PRINTER','Brother ');
 //define('PRINTER','Canon ');
-define('PRINTCMD','c:\\progra~1\\sumatr~1\\sumatr~1.exe -print-to ');
+//define('PRINTCMD','c:\\progra~1\\sumatr~1\\sumatr~1.exe -print-to ');
+define('PRINTCMD','lpr ');
 
 ?>
