@@ -18,11 +18,12 @@ window.location.href=url
 <form name="opd">
 <select name="selectname" size="1" onChange="pulldown_opd()">
 <option value=""> OPD</option>
-<option value="opd/add"> Add
+<option value="opd/get_adhar"> Add
 <option value="opd/get_id_edit"> Edit
 <option value="opd/get_id_print"> Print OPD Slip
 <option value="opd/get_date_view"> View A day's Table
 <option value="opd/search"> Search Patient
+<option value="opd/get_id_crhistory"> Update Critical History
 </select>
 </form>
 <?php

@@ -22,10 +22,13 @@ echo form_open('opd/add', array('id'=>'formtoadd'));
 
 $cellremark=array('data'=>form_input(array('name'=>$remark['name'], 'maxlength'=>$remark['max_len'], 'size'=>'30',  'value'=>set_value($remark['name']))), 'colspan'=>'4');
 $this->table->add_row(form_label($remark['label']),$cellremark) ; 
+$adhararray=array('name'=>'adhar', 'type'=>'hidden', 'value'=>set_value('adhar', $adhar));
+echo form_input($adhararray);
 $cellsumbit=array('data'=>form_submit('submit','Submit'), 'colspan'=>'5', 'align'=>'center');
 $this->table->add_row($cellsumbit);
 //$cellhome=array('data'=>"<a href=".site_url('home').">GO back</a>", 'colspan'=>'5', 'align'=>'center');
 //$this->table->add_row($cellhome);
+
 echo $this->table->generate();
 echo form_close();
 

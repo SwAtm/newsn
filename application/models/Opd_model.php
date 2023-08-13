@@ -21,7 +21,7 @@ class opd_model extends CI_Model{
 	}
 	
 	public function get_details_opd($id)
-	//called by opd/get_details_id, fitness/get_details_id, fitness/add_update, opd/edit, surgery/add
+	//called by opd/get_details_id, fitness/get_details_id, fitness/add_update, opd/edit, surgery/add, opd/get_id_crhistory, opd/update_crhistory
 	
 	{
 		$query=$this->db->select('*');
@@ -57,7 +57,7 @@ class opd_model extends CI_Model{
 
 		public function finddate ($y,$m) 
 		{
-		//called by opd/add	
+		//called by opd/add, opd/add_adhar
 			
 			if ($y==0):
 				$y=Date("Y");
@@ -77,7 +77,7 @@ class opd_model extends CI_Model{
 	}
 	
 		public function get_max_opdno($date=null)
-		//called by opd/add
+		//called by opd/add, opd/add_adhar
 		{
 			$query=$this->db->select_max('opdno');
 			$query=$this->db->from('opd');
@@ -91,14 +91,14 @@ class opd_model extends CI_Model{
 		}
 		
 		public function add_to_db($data)
-		//called by opd/add
+		//called by opd/add, opd/add_adhar
 	{
 		$this->db->insert('opd',$data);
 		return true;
 	}
 	
 		public function get_id($opdno, $date)
-		//called by opd/add
+		//called by opd/add, opd/add_adhar
 		{
 			$query=$this->db->select('id');
 			$query=$this->db->from ('opd');
@@ -115,7 +115,7 @@ class opd_model extends CI_Model{
 
 		public function finddiff($rowd)
 		//find diff bet today and a given date in years and months. given date in yyyy-mm-dd format.
-		//called by opd/print_opd, opd/edit, surgery/get_date
+		//called by opd/print_opd, opd/edit, surgery/get_date, opd/add_adhar
 {
 		$since=explode('-',$rowd);
 		$y1=$since[0];
@@ -143,7 +143,7 @@ class opd_model extends CI_Model{
 	return array($y, $m);
 }
 	public function opd_update($data, $id){
-		//called by opd/edit
+		//called by opd/edit, opd/update_crhistory
 	$this->db->update('opd',$data, array('id'=>$id));
 		return true;
 	}
@@ -178,7 +178,21 @@ class opd_model extends CI_Model{
 		endif;
 	}
 
-
+	public function get_details_adhar($adhar){
+		//called by opd/get_adhar
+		$query=$this->db->select('*');
+		$query=$this->db->from('opd');
+		$query=$this->db->where('adhar',$adhar);
+		$query=$this->db->order_by('id','DESC');
+		$query=$this->db->limit(1);
+		$query=$this->db->get();
+		if ($query):
+		return $query->row_array();
+		else:
+		return false;
+		endif;
+	}
+	
 
 
 /*	public function get_details_oid($oid)
