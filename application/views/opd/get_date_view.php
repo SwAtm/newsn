@@ -31,7 +31,11 @@ $this->table->add_row(form_submit('submit','Submit'));
 echo $this->table->generate();
 echo form_close();
 ?>
-
+<script>
+window.onload = function() {
+  var input = document.getElementById("dt").focus();
+}
+</script>
 </body>
 </html>
 

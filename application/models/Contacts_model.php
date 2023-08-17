@@ -17,4 +17,15 @@ class Contacts_model extends CI_Model{
 	return false;
 	endif;
 	}
+
+	public function get_number($sname){
+	//called by surgery/print_discharge
+	$sql=$this->db->select('No');
+	$sql=$this->db->from('contacts');
+	$sql=$this->db->where('Name',$sname);
+	$sql=$this->db->get();
+	return $sql->row_array();
+	
+	}
+
 }

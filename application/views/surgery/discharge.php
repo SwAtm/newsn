@@ -33,8 +33,11 @@ $pdf->MultiCell(59,8,"9. MAzÀÄ ªÁgÀzÀ £ÀAvÀgÀ vÀ¯ÉUÉ ¸Àé®à Ju
 16. PÀtÄÚUÀ¼À°è £ÉÆÃªÀÅAiÀiÁzÀgÉ CxÀªÁ PÁtÂ¸ÀÄªÀÅzÀÄ(zÀÈ¶Ö) PàrªÉÄAiÀiÁUÀÄwÛzÀÝgÉ, PÀÆqÀ¯ÉÃ ¤ªÀÄä qÁPÀÖgÀgÀ£ÀÄß ¸ÀA¥ÀQð¹j.",0,'J');
 $y=$pdf->GetY();
 //$pdf->ln(10);
-$pdf->SetXY(79,$y+10);
 $pdf->SetFont('Arial','',12);
+$pdf->SetXY(79,$y+5);
+$pdf->Cell(59,6,$p['snumber'],0,1,'R');
+$y=$pdf->GetY();
+$pdf->SetXY(79,$y);
 $pdf->Cell(30,6,"K1: ".$p['k1'],1,0,'C');
 $pdf->Cell(29,6,"K2: ".$p['k2'],1,1,'C');
 $y=$pdf->GetY();
@@ -109,12 +112,12 @@ $pdf->cell(105,8,"Eye Drop-Ciplox-D/Oflox-D: As on Page 2 for 6 weeks",1,1);
 
 $pdf->ln(10);
 $pdf->SetX($xd+12);
-$pdf->cell(60,8,"First Post Op Date",1,0);
-$pdf->cell(45,8, $discharge['p1']." at ".$discharge['tm1'],1,1);
+$pdf->cell(54,8,"First Post Op Date",1,0);
+$pdf->cell(51,8, $discharge['p1']." at ".$discharge['tm1'],1,1);
 
 $pdf->SetX($xd+12);
-$pdf->cell(60,8,"Second Post Op Date",1,0);
-$pdf->cell(45,8, $discharge['p2']." at ".$discharge['tm2'],1,1);
+$pdf->cell(54,8,"Second Post Op Date",1,0);
+$pdf->cell(51,8, $discharge['p2']." at ".$discharge['tm2'],1,1);
 
 
 $pdf->ln(10);
@@ -125,6 +128,11 @@ $pdf->SetX($xd+12);
 $pdf->cell(35,8, "Date",1,0,'C');
 $pdf->cell(35,8, "RE",1,0,'C');
 $pdf->cell(35,8, "LE",1,1,'C');
+
+$pdf->SetX($xd+12);
+$pdf->cell(35,8,$discharge['p0'],1,0,'C');
+$pdf->cell(35,8, "6/",1,0);
+$pdf->cell(35,8, "6/",1,1);
 
 $pdf->SetX($xd+12);
 $pdf->cell(35,8,$discharge['p1'],1,0,'C');

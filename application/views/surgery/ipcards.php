@@ -70,6 +70,8 @@ $pdf->Cell(45,10,"RBS: ".$p['rbs'],1,0,'L');
 $pdf->Cell(45,10,"ECG: ".$p['ecg'],1,0,'L');
 $pdf->Cell(45,10,"Sac: ".$p['sac'],1,0,'L');
 $pdf->Cell(45,10,"Tension: ".$p['iop'],1,1,'L');
+$pdf->Cell(90,10,"HIV: ".$p['hiv'],1,0,'L');
+$pdf->Cell(90,10,"HBsAg: ".$p['hbsag'],1,1,'L');
 $pdf->Cell(90,10,"BP (mm/Hg) ",1,0,'L');
 $pdf->Cell(90,10,"HR (b/mn) ",1,1,'L');
 $pdf->Cell(90,10,"CVS:",1,0,'L');

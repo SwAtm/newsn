@@ -35,17 +35,17 @@ $sur=array(
 	//array('label'=>'IOL','name'=>'iol','maxlength'=>'5'),
 	//array('label'=>'ECG','name'=>'ecg','maxlength'=>'20'),
 	//array('label'=>'BP','name'=>'bp','maxlength'=>'30'),
-	array('label'=>'RBS','name'=>'rbs','maxlength'=>'30'),
-	array('label'=>'SAC','name'=>'sac','maxlength'=>'10'),
-	array('label'=>'IOP','name'=>'iop','maxlength'=>'10')
+	array('label'=>'RBS','name'=>'rbs','maxlength'=>'30', 'value'=>''),
+	array('label'=>'SAC','name'=>'sac','maxlength'=>'10', 'value'=>'Patent'),
+	array('label'=>'IOP','name'=>'iop','maxlength'=>'10', 'value'=>'Normal')
 	);
 echo "<table border=1 align=center>";
 echo "<tr><td colspan=3 align=center>Patient's id/name: ".$opd['id']."/ ".$opd['name'].", ".$opd['add1']."</td></tr>";
 echo "<tr><td>DOS</td><td>".form_input(array('name'=>'dos','id'=>'dt'))."</td></tr>";
-echo "<tr><td>ECG</td><td>".form_input(array('name'=>'ecg','id'=>'ecg'))."</td></tr>";
+echo "<tr><td>ECG</td><td>".form_input(array('name'=>'ecg','id'=>'ecg', 'value'=>'WNL'))."</td></tr>";
 
 foreach ($sur as $sur1):
-	echo "<tr><td>".$sur1['label']."</td><td colspan='2' >".form_input(array ('name'=>$sur1['name'],'maxlength'=>$sur1['maxlength']))."</td></tr>";
+	echo "<tr><td>".$sur1['label']."</td><td colspan='2' >".form_input(array ('name'=>$sur1['name'],'maxlength'=>$sur1['maxlength'], 'value'=>$sur1['value']))."</td></tr>";
 endforeach;
 echo "<tr><td>Eye to be Operated</td><td colspan=2>".form_dropdown('eye', array('L'=>'Left','R'=>'Right'))."</td></tr>";
 

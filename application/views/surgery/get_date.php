@@ -21,12 +21,18 @@ $(function() {
 echo validation_errors();
 $template=array('table_open'=>'<table border=1 align=center width=50%>');
 $this->table->set_template($template);
-$this->table->set_heading(array('data'=>'Form to Generate Reports. Please enter date', 'align'=>'center', 'colspan'=>'3'));
+$this->table->set_heading(array('data'=>'Form to Generate Surgery Reports. Please enter date', 'align'=>'center', 'colspan'=>'3'));
 echo form_open('surgery/get_date');
-$this->table->add_row(array('data'=>form_input(array('name'=>'dos', 'id'=>'dos')),'colspan'=>'3', 'align'=>'center')) ;
+$this->table->add_row(array('data'=>form_input(array('name'=>'dos', 'id'=>'dos')),'colspan'=>'2', 'align'=>'center')) ;
 //$this->table->add_row(form_input(array('name'=>'dos', 'id'=>'dos', 'colspan'=>'3')));
-$this->table->add_row(array('data'=>form_submit('preop','Pre OP Chart'),'align'=>'center'),array('data'=>form_submit('ipcards','IP Cards'),'align'=>'center'),array('data'=>form_submit('discharge','Discharge Cards'), 'align'=>'center') );
+$this->table->add_row(array('data'=>form_submit('preop','Pre OP Reports'),'align'=>'center'),array('data'=>form_submit('discharge','Post Op Reports'), 'align'=>'center') );
 echo $this->table->generate();
 echo form_close();
 ?>
+<script>
+window.onload = function() {
+  var input = document.getElementById("dos").focus();
+}
+
+</script>
 </html>

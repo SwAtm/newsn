@@ -17,8 +17,9 @@ $template=array('table_open'=>'<table border=1 align=center');
 $this->table->set_template($template);
 $this->table->set_heading(array('data'=>'Confirm Post Op Dates', 'align'=>'center', 'colspan'=>'2'));
 $this->table->add_row('Date', 'Time');
-$this->table->add_row(form_input('p1',$postop1),form_input('tm1','3.00 PM'));
-$this->table->add_row(form_input('p2',$postop2),form_input('tm2','3.00 PM'));
+$this->table->add_row(form_input('p0',$postop0),form_input('tm0','12.00 Noon'));
+$this->table->add_row(form_input('p1',$postop1),form_input('tm1','12.00 Noon'));
+$this->table->add_row(form_input('p2',$postop2),form_input('tm2','12.00 Noon'));
 echo $this->table->generate();
 
 $template=array('table_open'=>'<table border=1 align=center');

@@ -327,11 +327,11 @@ class Surgery extends CI_Controller{
 					$data['dos']=$dos;	
 					$data['hdr']=array('Ord No','Sl No','Name','Lng','eye','gvp','DM','HTN','Remark');
 					$this->load->view('surgery/preop',$data);
-					$this->load->view('templates/header');
-					$this->output->append_output("Pre Op Chart printed at ".SAVEPATH."<br>");
-					$this->output->append_output("<a href=".site_url('home').">Go Home</a>");
+					//$this->load->view('templates/header');
+					//$this->output->append_output("Pre Op Chart printed at ".SAVEPATH."<br>");
+					//$this->output->append_output("<a href=".site_url('home').">Go Home</a>");
 					
-				elseif (isset($_POST['ipcards'])):
+					//ip cards
 					$data=$this->surgery_model->get_details_opd_sur_ipcard($dos);
 					
 					foreach ($data as $data1=>$value):
@@ -360,10 +360,11 @@ class Surgery extends CI_Controller{
 					$data['dos']=date('d-m-Y',strtotime($dos));
 					$this->load->view('surgery/ipcards',$data);
 					$this->load->view('templates/header');
-					$this->output->append_output("IP Cards printed at ".SAVEPATH."<br>");
+					$this->output->append_output("Pre-Op printed at ".SAVEPATH."<br>");
 					$this->output->append_output("<a href=".site_url('home').">Go Home</a>");
 				else:
 					$data['dos']=$dos;
+					$data['postop0']=date('d-m-Y',strtotime($dos."+1 days"));
 					$data['postop1']=date('d-m-Y',strtotime($dos."+8 days"));
 					$data['postop2']=date('d-m-Y',strtotime($dos."+43 days"));
 					$this->load->view('templates/header');
@@ -409,6 +410,10 @@ class Surgery extends CI_Controller{
 						$htnym=$this->opd_model->finddiff($value['htn']);
 						$patients[$data1]['htn']="On Rx since ".$htnym[0]." Y and ".$htnym[1]." m";
 						endif;
+						//find surgeon number
+						$sname=substr($value['surgeon'],3);
+						$snumber=$this->contacts_model->get_number($sname);
+						$patients[$data1]['snumber']=$snumber['No'];
 						$patients[$data1]['lan']=$value['language'];
 						$dobym=$this->opd_model->finddiff($value['dob']);
 						$patients[$data1]['dob']=$dobym[0];
