@@ -55,7 +55,7 @@ $pdf->Cell(50,20,"K1: ".($p['k1']==0?'':$p['k1']),1,0,'L');
 $pdf->Cell(50,20,"K2: ".($p['k2']==0?'':$p['k2']),1,1,'L');
 $pdf->Cell(40,20," ",0,0,'C');
 $pdf->Cell(50,20,"Axial Length: ".($p['al']==0?'':$p['al']),1,0,'L');
-$pdf->Cell(50,20,"IOL: ".($p['iol']==0?'':$p['iol']),1,1,'L');
+$pdf->Cell(50,20,"IOL: ".($p['iol']==0?'':$p['iol'])."     BM: ".($p['bm']==0?'':$p['bm']),1,1,'C');
 $pdf->ln(5);
 $pdf->Cell(0,10,"History and Findings",0,1,'C');
 $pdf->ln(5);

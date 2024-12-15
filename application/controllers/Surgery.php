@@ -182,7 +182,7 @@ class Surgery extends CI_Controller{
 				$this->output->append_output("<a href=".site_url('home').">Go home</a>");
 				*/
 			else:
-				echo "Coulnot update record<br>";
+				echo "Couldnot update record<br>";
 				echo "<a href=".site_url('home').">Go home</a>";
 				//echo $this->db->_error_message();
 			endif;

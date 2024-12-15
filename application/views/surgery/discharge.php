@@ -46,7 +46,7 @@ $pdf->Cell(30,6,"AL: ".$p['al'],1,0,'C');
 $pdf->Cell(29,6,"IOL: ".$p['iol'],1,1,'C');
 $y=$pdf->GetY();
 $pdf->SetXY(79,$y);
-$pdf->Cell(59,8,"BM: ",1,0,'L');
+$pdf->Cell(59,8,"BM: ".$p['bm'],1,0,'C');
 //page1
 $xd=158;
 $pdf->SetXY(158,10);
