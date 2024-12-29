@@ -294,6 +294,10 @@ class Surgery extends CI_Controller{
 							unset ($data[$k]);
 						endif;
 					endforeach;
+					
+					if (count($data)==0):
+						Die ($this->load->view('templates/header','',TRUE)."No valid records. <a href=".site_url('home').">Go Home</a>");
+					endif;
 										
 					foreach ($data as $data3=>$v):
 						$add1=array('Sl No'=>'');
