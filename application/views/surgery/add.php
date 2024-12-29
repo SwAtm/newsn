@@ -28,22 +28,27 @@ echo form_open('surgery/add/'.$id,'',array('id'=> $id));
 
 $sur=array(
 	//array('label'=>'DOS','name'=>'dos','maxlength'=>'10'),
-	//array('label'=>'K1','name'=>'k1','maxlength'=>'5'),
-	//no need of k1, k2, al, iol, bp during add
-	//array('label'=>'K2','name'=>'k2','maxlength'=>'5'),
-	//array('label'=>'AL','name'=>'al','maxlength'=>'5'),
-	//array('label'=>'IOL','name'=>'iol','maxlength'=>'5'),
+	array('label'=>'K1','name'=>'k1','maxlength'=>'5','value'=>''),
+	//no need of bp during add
+	array('label'=>'K2','name'=>'k2','maxlength'=>'5','value'=>''),
+	array('label'=>'AL','name'=>'al','maxlength'=>'5','value'=>''),
+	array('label'=>'IOL','name'=>'iol','maxlength'=>'5','value'=>''),
+	array('label'=>'BM','name'=>'bm','maxlength'=>'5','value'=>''),
 	//array('label'=>'ECG','name'=>'ecg','maxlength'=>'20'),
 	//array('label'=>'BP','name'=>'bp','maxlength'=>'30'),
 	array('label'=>'RBS','name'=>'rbs','maxlength'=>'30', 'value'=>''),
 	array('label'=>'SAC','name'=>'sac','maxlength'=>'10', 'value'=>'Patent'),
 	array('label'=>'IOP','name'=>'iop','maxlength'=>'10', 'value'=>'Normal')
 	);
+$ecg=array(''=>'Select','WNL'=>'WNL', 'Changes'=>'Changes');
+$hiv=array(''=>'Select','Negative'=>'Non-Reactive', 'Positive'=>'Reactive');
+$hbsag=array(''=>'Select','Negative'=>'Non-Reactive', 'Positive'=>'Reactive');
 echo "<table border=1 align=center>";
 echo "<tr><td colspan=3 align=center>Patient's id/name: ".$opd['id']."/ ".$opd['name'].", ".$opd['add1']."</td></tr>";
 echo "<tr><td>DOS</td><td>".form_input(array('name'=>'dos','id'=>'dt'))."</td></tr>";
-echo "<tr><td>ECG</td><td>".form_input(array('name'=>'ecg','id'=>'ecg', 'value'=>'WNL'))."</td></tr>";
-
+echo "<tr><td>ECG-Pl see report and fill</td><td>".form_dropdown('ecg',$ecg,'')."</td></tr>";
+echo "<tr><td>HIV-PL see report and fill</td><td>".form_dropdown('hiv',$hiv,'')."</td></tr>";
+echo "<tr><td>HBsAg-Pl see report and fill</td><td>".form_dropdown('hbsag',$hbsag,'')."</td></tr>";
 foreach ($sur as $sur1):
 	echo "<tr><td>".$sur1['label']."</td><td colspan='2' >".form_input(array ('name'=>$sur1['name'],'maxlength'=>$sur1['maxlength'], 'value'=>$sur1['value']))."</td></tr>";
 endforeach;

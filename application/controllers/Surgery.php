@@ -287,6 +287,13 @@ class Surgery extends CI_Controller{
 				if (isset($_POST['preop'])):
 					$data=$this->surgery_model->get_details_opd_sur_preop($dos);
 					//print_r($data);
+					
+					//unset rows with ecg!=wnl or hiv!=negative or hbsag!=negative
+					foreach ($data as $k=>$v):
+						if ($v['ecg']!='WNL' OR $v['hiv']!='Negative' or $v['hbsag']!='Negative'):
+							unset ($data[$k]);
+						endif;
+					endforeach;
 										
 					foreach ($data as $data3=>$v):
 						$add1=array('Sl No'=>'');
@@ -319,6 +326,10 @@ class Surgery extends CI_Controller{
 						if($value['remark']!==''):
 							$data[$data1]['remark']=str_replace(',',' :: ',$value['remark']);
 						endif;
+						//unset ecg, hiv and hbsag
+						unset ($data[$data1]['ecg']);
+						unset ($data[$data1]['hiv']);
+						unset ($data[$data1]['hbsag']);
 						$data[$data1]['Sl No']=$i;
 						$i++;
 					endforeach;
@@ -333,6 +344,13 @@ class Surgery extends CI_Controller{
 					
 					//ip cards
 					$data=$this->surgery_model->get_details_opd_sur_ipcard($dos);
+					
+					//unset rows with ecg!=wnl or hiv!=negative or hbsag!=negative
+					foreach ($data as $k=>$v):
+						if ($v['ecg']!='WNL' OR $v['hiv']!='Negative' or $v['hbsag']!='Negative'):
+							unset ($data[$k]);
+						endif;
+					endforeach;
 					
 					foreach ($data as $data1=>$value):
 						if ($value['gvp']==1):

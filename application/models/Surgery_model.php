@@ -91,7 +91,7 @@ class Surgery_model extends CI_Model{
 	public function get_details_opd_sur_preop($dos)
 	//called by surgery/get_date
 	{
-	$query=$this->db->select('opd.name, opd.language, surgery.eye, surgery.gvp, opd.dm, opd.htn, surgery.remark');
+	$query=$this->db->select('opd.name, opd.language, surgery.eye, surgery.gvp, opd.dm, opd.htn, surgery.remark, surgery.ecg, surgery.hiv, surgery.hbsag');
 	$query=$this->db->from('surgery');
 	$query=$this->db->join('opd','surgery.id=opd.id','inner');
 	$query=$this->db->where('surgery.dos',$dos);

@@ -26,7 +26,7 @@ $sur=array(
 	array('label'=>'AL','name'=>'al','maxlength'=>'5'),
 	array('label'=>'IOL','name'=>'iol','maxlength'=>'5'),
 	array('label'=>'BM','name'=>'bm','maxlength'=>'10'),
-	array('label'=>'ECG','name'=>'ecg','maxlength'=>'20'),
+	//array('label'=>'ECG','name'=>'ecg','maxlength'=>'20'),
 	array('label'=>'BP','name'=>'bp','maxlength'=>'30'),
 	array('label'=>'RBS','name'=>'rbs','maxlength'=>'30'),
 	array('label'=>'SAC','name'=>'sac','maxlength'=>'10'),
@@ -43,8 +43,9 @@ echo "<tr><td>K1</td><td>".form_input(array('name'=>'k1','id'=>'k1', 'value'=>$s
 foreach ($sur as $sur1):
 	echo "<tr><td>".$sur1['label']."</td><td colspan='2' >".form_input(array ('name'=>$sur1['name'],'maxlength'=>$sur1['maxlength'],'value'=>$surgery[$sur1['name']]))."</td></tr>";
 endforeach;
-echo "<tr><td>HIV</td><td colspan=2>".form_dropdown('hiv', array(''=>'Select', 'negative'=>'Negative', 'positive'=>'Positive'),$surgery['hiv'])."</td></tr>";
-echo "<tr><td>HBsAg</td><td colspan=2>".form_dropdown('hbsag', array(''=>'Select', 'negative'=>'Negative', 'positive'=>'Positive'),$surgery['hbsag'])."</td></tr>";
+echo "<tr><td>ECG-Pl see report and fill</td><td colspan=2>".form_dropdown('ecg', array(''=>'Select', 'WNL'=>'WNL', 'Changes'=>'Changes'),$surgery['ecg'])."</td></tr>";
+echo "<tr><td>HIV-Pl see report and fill</td><td colspan=2>".form_dropdown('hiv', array(''=>'Select', 'Negative'=>'Non-Reactive', 'Positive'=>'Reactive'),$surgery['hiv'])."</td></tr>";
+echo "<tr><td>HBsAg-Pl see report and fill</td><td colspan=2>".form_dropdown('hbsag', array(''=>'Select', 'Negative'=>'Non-Reactive', 'Positive'=>'Reactive'),$surgery['hbsag'])."</td></tr>";
 echo "<tr><td>Eye to be Operated</td><td colspan=2>".form_dropdown('eye', array('L'=>'Left','R'=>'Right'),$surgery['eye'])."</td></tr>";
 if (0==$surgery['gvp']):
 echo "<tr><td>GVP?</td><td>Yes".form_radio('gvp','yes',false)."</td><td>No".form_radio('gvp','no',true)."</td></tr>";
