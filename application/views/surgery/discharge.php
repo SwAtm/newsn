@@ -89,27 +89,8 @@ $pdf->SetX($xd);
 //$pdf->Cell(128,5,"Surgery Performed: SICS ".$p['eye'],0,1);
 $pdf->ln(2);
 $pdf->SetX($xd);
-$pdf->SetFont('Arial','',12);
-$pdf->Cell(128,5, "Post Operative Medicines",0,1,'C');
-$pdf->ln(5);
-$pdf->SetX($xd+12);
-$pdf->cell(60,8,$discharge['m1'],1,0);
-$pdf->cell(20,8,$discharge['t1'],1,0);
-$pdf->cell(25,8,$discharge['d1'],1,1);
 
-$pdf->SetX($xd+12);
-$pdf->cell(60,8,$discharge['m2'],1,0);
-$pdf->cell(20,8,$discharge['t2'],1,0);
-$pdf->cell(25,8,$discharge['d2'],1,1);
-
-$pdf->SetX($xd+12);
-$pdf->cell(60,8,$discharge['m3'],1,0);
-$pdf->cell(20,8,$discharge['t3'],1,0);
-$pdf->cell(25,8,$discharge['d3'],1,1);
-
-$pdf->SetX($xd+12);
-$pdf->cell(105,8,"Eye Drop-Ciplox-D/Oflox-D: As on Page 2 for 6 weeks",1,1);
-
+/*
 $pdf->ln(10);
 $pdf->SetX($xd+12);
 $pdf->cell(54,8,"First Post Op Date",1,0);
@@ -119,7 +100,7 @@ $pdf->SetX($xd+12);
 $pdf->cell(54,8,"Second Post Op Date",1,0);
 $pdf->cell(51,8, $discharge['p2']." at ".$discharge['tm2'],1,1);
 
-
+*/
 $pdf->ln(10);
 $pdf->SetX($xd+12);
 $pdf->cell(105,8,"Post Operative Vision",1,1,'C');
@@ -143,6 +124,37 @@ $pdf->SetX($xd+12);
 $pdf->cell(35,8,$discharge['p2'],1,0,'C');
 $pdf->cell(35,8, "6/",1,0);
 $pdf->cell(35,8, "6/",1,1);
+
+$pdf->SetXY($xd,$xd+12);
+//$pdf->SetY($xd);
+
+$pdf->cell(8,8, '',1,0);
+$pdf->cell(20,8, 'Sph',1,0);
+$pdf->cell(20,8, 'Cyl',1,0);
+$pdf->cell(20,8, 'Axis',1,0);
+$pdf->cell(20,8, 'Vision',1,0);
+$pdf->cell(20,8, 'Add',1,0);
+$pdf->cell(20,8, 'Nr Vn',1,1);
+
+$pdf->SetX($xd);
+$pdf->cell(8,12, 'RE',1,0);
+$pdf->cell(20,12, '',1,0);
+$pdf->cell(20,12, '',1,0);
+$pdf->cell(20,12, '',1,0);
+$pdf->cell(20,12, '',1,0);
+$pdf->cell(20,12, '',1,0);
+$pdf->cell(20,12, '',1,1);
+
+$pdf->SetX($xd);
+$pdf->cell(8,12, 'LE',1,0);
+$pdf->cell(20,12, '',1,0);
+$pdf->cell(20,12, '',1,0);
+$pdf->cell(20,12, '',1,0);
+$pdf->cell(20,12, '',1,0);
+$pdf->cell(20,12, '',1,0);
+$pdf->cell(20,12, '',1,1);
+
+
 
 //page 2
 $pdf->AddPage();
@@ -240,6 +252,37 @@ $pdf->Cell(20,12,$date,0,0);
 $pdf->SetFont('brhknd','',12);
 $pdf->MultiCell(108,12,"¨É¼ÀUÉÎ 08.00 || ªÀÄzsÁåºÀß 02.00 || gÁwæ 08.00
 ",0,1);
+
+$pdf->ln(5);
+$pdf->SetFont('Arial','',12);
+$pdf->Cell(128,5, "Post Operative Medicines",0,1,'C');
+$pdf->ln(5);
+//$pdf->SetX($xd+12);
+$pdf->SetX(20);
+$pdf->cell(60,8,$discharge['m1'],1,0);
+$pdf->cell(20,8,$discharge['t1'],1,0);
+$pdf->cell(25,8,$discharge['d1'],1,1);
+
+//$pdf->SetX($xd+12);
+$pdf->SetX(20);
+$pdf->cell(60,8,$discharge['m2'],1,0);
+$pdf->cell(20,8,$discharge['t2'],1,0);
+$pdf->cell(25,8,$discharge['d2'],1,1);
+
+//$pdf->SetX($xd+12);
+$pdf->SetX(20);
+$pdf->cell(60,8,$discharge['m3'],1,0);
+$pdf->cell(20,8,$discharge['t3'],1,0);
+$pdf->cell(25,8,$discharge['d3'],1,1);
+
+$pdf->SetX(20);
+$pdf->cell(60,8,$discharge['m4'],1,0);
+$pdf->cell(20,8,$discharge['t4'],1,0);
+$pdf->cell(25,8,$discharge['d4'],1,1);
+
+//$pdf->SetX($xd+12);
+$pdf->SetX(20);
+$pdf->cell(105,8,"Eye Drop-Ciplox-D/Oflox-D: As above for 6 weeks",1,1);
 //page 3
 $pdf->SetFont('brh_deve','',12);
 $pdf->SetXY(158,10);

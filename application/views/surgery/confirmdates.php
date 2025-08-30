@@ -11,6 +11,7 @@ $this->table->add_row('Medicines', 'Times like 1-0-1', 'Days');
 $this->table->add_row(form_input('m1','Ciprofloxacin'),form_input('t1','1-0-1'),form_input('d1','3 days'));
 $this->table->add_row(form_input('m2','Diclofenac'),form_input('t2','1-0-1'),form_input('d2','3 days'));
 $this->table->add_row(form_input('m3','Multivitamine'),form_input('t3','1-0-0'),form_input('d3','5 days'));
+$this->table->add_row(form_input('m4','Omez D'),form_input('t4','1-0-0'),form_input('d4','2 days'));
 echo $this->table->generate();
 
 $template=array('table_open'=>'<table border=1 align=center');
