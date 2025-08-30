@@ -21,7 +21,7 @@ class opd_model extends CI_Model{
 	}
 	
 	public function get_details_opd($id)
-	//called by opd/get_details_id, fitness/get_details_id, fitness/add_update, opd/edit, surgery/add, opd/get_id_crhistory, opd/update_crhistory
+	//called by opd/get_details_id, fitness/get_details_id, fitness/add_update, opd/edit, surgery/add, opd/get_id_crhistory, opd/update_crhistory, surgery/get_id_add
 	
 	{
 		$query=$this->db->select('*');

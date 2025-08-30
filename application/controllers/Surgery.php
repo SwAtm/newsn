@@ -32,10 +32,13 @@ class Surgery extends CI_Controller{
 			//check if already in surgery table, fitness table.
 			
 			$id=$this->input->post('id');
+			$opddet=$this->opd_model->get_details_opd($id);
 				if ($this->surgery_model->get_details($id)):
 					Die ($this->load->view('templates/header','',TRUE)."<a href=".site_url('home').">Record already in Surgery Table, Pl use edit option</a>");
 				elseif (!$row=$this->fitness_model->get_details_id($id)):
 					Die ($this->load->view('templates/header','',TRUE)."Record not in Fitness Table, <a href=".site_url('fitness/get_id')."> Pl add and come back</a>");
+				elseif ($opddet['hiv']=='positive' or $opddet['hbsag']=='positive' or $opddet['ecg']=='changes'):
+					Die ($this->load->view('templates/header','',TRUE)."HIV or HBsAg Positive or ECG Changes, <a href=".site_url('home')."> Go Home</a>");
 				else:
 					redirect('surgery/add/'.$id);
 				endif;
