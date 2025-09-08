@@ -126,7 +126,7 @@ endif;
 $pdf->SetX($xd+6);
 $pdf->cell(26,8,$discharge['p1'],1,0,'C');
 $pdf->cell(20,8, "12 noon",1,0,'C');
-if($p['eye']=="RE"):
+if(strpos($p['eye'],"RE")!==false):
 $pdf->cell(37,8, "6/",1,0);
 $pdf->cell(37,8, "---",1,1,'C');
 else:
@@ -137,7 +137,7 @@ endif;
 $pdf->SetX($xd+6);
 $pdf->cell(26,8,$discharge['p2'],1,0,'C');
 $pdf->cell(20,8, "12 noon",1,0,'C');
-if($p['eye']=="RE"):
+if(strpos($p['eye'],"RE")!==false):
 $pdf->cell(37,8, "6/",1,0);
 $pdf->cell(37,8, "---",1,1,'C');
 else:
