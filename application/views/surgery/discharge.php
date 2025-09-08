@@ -114,7 +114,8 @@ $pdf->cell(37,8, "LE",1,1,'C');
 $pdf->SetX($xd+6);
 $pdf->cell(26,8,$discharge['p0'],1,0,'C');
 $pdf->cell(20,8, "12 noon",1,0,'C');
-if($p['eye']=="RE"):
+//if(($p['eye']=="RE") || ($p['eye']=="RE Under GVP")):
+if(strpos($p['eye'],"RE")!==false):
 $pdf->cell(37,8, "6/",1,0);
 $pdf->cell(37,8, "---",1,1,'C');
 else:
