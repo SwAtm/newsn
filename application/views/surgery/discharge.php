@@ -338,7 +338,7 @@ $yforpeerless=$pdf->GetY();
 $pdf->Image (IMGPATH.'peerless1.jpg', '202', $yforpeerless, '', '8', '', 'JPG', '', '', '', 'C');
 $pdf->ln(10);
 $pdf->SetX(158);
-$pdf->cell(128,5,$p['ipno']-10488,0,1,'R');
+$pdf->cell(128,5,$p['ipno']-10508,0,1,'R');
 // Source - https://stackoverflow.com/a/25784054
 // Posted by fdehanne, modified by community. See post 'Timeline' for change history
 // Retrieved 2026-02-02, License - CC BY-SA 4.0
