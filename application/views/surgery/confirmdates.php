@@ -1,7 +1,7 @@
 <?php
-echo $dos."<br>";
-echo $postop1."<br>";
-echo $postop2."<br>";
+echo date('d-m-Y',strtotime($dos)).' '. date('l', strtotime($dos))."<br>";
+echo $postop1.'  '.date('l', strtotime($postop1))."<br>";
+echo $postop2.'  '.date('l', strtotime($postop2))."<br>";
 echo form_open('surgery/print_discharge/'.$dos);
 
 $template=array('table_open'=>'<table border=1 align=center');
