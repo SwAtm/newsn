@@ -145,9 +145,8 @@ $pdf->cell(37,8, "--",1,0,'C');
 $pdf->cell(37,8, "6/",1,1);
 endif;
 
+/*
 $pdf->SetXY($xd,$xd+12);
-//$pdf->SetY($xd);
-
 $pdf->cell(8,8, '',1,0);
 $pdf->cell(20,8, 'Sph',1,0);
 $pdf->cell(20,8, 'Cyl',1,0);
@@ -173,7 +172,7 @@ $pdf->cell(20,12, '',1,0);
 $pdf->cell(20,12, '',1,0);
 $pdf->cell(20,12, '',1,0);
 $pdf->cell(20,12, '',1,1);
-
+*/
 
 
 //page 2
@@ -326,35 +325,38 @@ $pdf->MultiCell(59,8,"1. L qÁæ¥ï G¥ÀAiÉÆÃV¸ÀÄªÀ ªÉÆzÀ®Ä PÉ�
 7. D¥ÀgÉÃ±À£ï DzÁUÀ DgÀÄ ªÁgÀ vÀ¯ÉUÉ ¸Áß£À ªÀiÁqÀ¨ÉÃrj ªÀÄvÀÄÛ D PÀtÂÚUÉ ¤ÃgÀ£ÀÄßß ºÁPÀ¨ÉÃr.
 8. ¢£ÀPÉÌ ªÀÄÆgÀÄ ¨Áj ºÀwÛAiÀÄ£ÀÄß ªÉÆzÀ®Ä vÉÆ¼ÉzÀÄ CzÀ£ÀÄß ZÉ£ÁßV »Ar, £ÀAvÀgÀ PÀtÚ£ÀÄß MgÉ¹. ¤Ãj¤AzÀ MzÉÝ ªÀiÁr  »ArzÀ §mÉÖAiÀÄ°è ªÀÄÄRªÀ£ÀÄß MgÉ¹PÉÆ½î. ",0,'J');
 
-$pdf->SetX(158);
+//
 $pdf->SetFont('Arial','',12);
-$pdf->Cell(128,0,'',1,1,'C');
-$pdf->ln(5);
-$pdf->SetX(158);
-$pdf->cell(128,5,'In Association With',0,1,'C');
-$pdf->ln(5);
-$yforpeerless=$pdf->GetY();
-//$pdf->Image (IMGPATH.'peerless.png', '213', $yforpeerless, '', '8', '', 'PNG', '', '', '', 'C');
-$pdf->Image (IMGPATH.'peerless1.jpg', '202', $yforpeerless, '', '8', '', 'JPG', '', '', '', 'C');
-$pdf->ln(10);
-$pdf->SetX(158);
-$pdf->cell(128,5,$p['ipno']-10508,0,1,'R');
-// Source - https://stackoverflow.com/a/25784054
-// Posted by fdehanne, modified by community. See post 'Timeline' for change history
-// Retrieved 2026-02-02, License - CC BY-SA 4.0
+$pdf->SetXY($xd,$xd+12);
+$pdf->cell(8,8, '',1,0);
+$pdf->cell(20,8, 'Sph',1,0);
+$pdf->cell(20,8, 'Cyl',1,0);
+$pdf->cell(20,8, 'Axis',1,0);
+$pdf->cell(20,8, 'Vision',1,0);
+$pdf->cell(20,8, 'Add',1,0);
+$pdf->cell(20,8, 'Nr Vn',1,1);
 
-//$this->Image($image_file, 90, 5, 40, '', 'PNG', '', 'T', false, 300, 'C', false, false, 0, false, false, false);
+$pdf->SetX($xd);
+$pdf->cell(8,12, 'RE',1,0);
+$pdf->cell(20,12, '',1,0);
+$pdf->cell(20,12, '',1,0);
+$pdf->cell(20,12, '',1,0);
+$pdf->cell(20,12, '',1,0);
+$pdf->cell(20,12, '',1,0);
+$pdf->cell(20,12, '',1,1);
 
-$pdf->ln(10);
-$pdf->SetX(158);
-$pdf->SetX(158);
-//$pdf->SetFont('Arial','B',16);
-//$pdf->cell(30,5,'Peerless' ,0,0,'C');
-/*$pdf->SetFont('brh_deve','',14);
-$pdf->cell(64,5,'mĕAeuÉåxÉcrÉÉ xÉWûrÉÉåaÉÉlÉå' ,0,0,'C');
-$pdf->SetFont('brhknd','',18);
-$pdf->cell(64,5,'¦üAiÀÄgï¯É¸ï ¸ÀºÀAiÉÆÃUÀzÉÆA¢UÉ' ,0,0,'C');*/
+$pdf->SetX($xd);
+$pdf->cell(8,12, 'LE',1,0);
+$pdf->cell(20,12, '',1,0);
+$pdf->cell(20,12, '',1,0);
+$pdf->cell(20,12, '',1,0);
+$pdf->cell(20,12, '',1,0);
+$pdf->cell(20,12, '',1,0);
+$pdf->cell(20,12, '',1,1);
+
 endforeach;
+
+
 $filename=SAVEPATH."Discharge- ".$dos.".pdf";
 $pdf->Output($filename);
 
